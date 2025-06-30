@@ -12,13 +12,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useAuth } from "@/components/auth-provider";
-import { Play, Upload, User, Settings, LogOut, Menu } from "lucide-react";
+import { Upload, User, Settings, LogOut, Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Image from "next/image";
 
 const navigation = [
   { name: "Home", href: "/" },
   { name: "Library", href: "/library" },
+  { name: "Contest", href: "/library/contests" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
 ];
@@ -46,14 +47,10 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 p-6 flex justify-center items-center">
       <div className="container flex h-14 items-center">
+        {/* Desktop Nav & Logo */}
         <div className="mr-4 hidden md:flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <Image
-              src="/isabitv.svg"
-              height={50}
-              width={100}
-              alt="logo.svg"
-            />
+            <Image src="/isabitv.svg" height={50} width={100} alt="logo.svg" />
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium">
             <NavLinks />
@@ -89,12 +86,18 @@ export function Navbar() {
         </Sheet>
 
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
+          {/* Logo for mobile */}
           <div className="w-full flex-1 md:w-auto md:flex-none">
             <Link href="/" className="flex items-center space-x-2 md:hidden">
-              <Play className="h-6 w-6" />
-              <span className="font-bold">VideoHub</span>
+              <Image
+                src="/isabitv.svg"
+                height={50}
+                width={100}
+                alt="logo.svg"
+              />
             </Link>
           </div>
+
           <nav className="flex items-center space-x-2">
             {user ? (
               <>
@@ -149,23 +152,37 @@ export function Navbar() {
                 </DropdownMenu>
               </>
             ) : (
-              <div className="flex items-center space-x-2">
-                <Button
-                  variant="ghost"
-                  size="lg"
-                  asChild
-                  className="border rounded-[50px]"
-                >
-                  <Link href="/auth/signin">Sign In</Link>
-                </Button>
-                <Button
-                  size="lg"
-                  asChild
-                  className="bg-[#228201] text-primary-foreground rounded-[50px]"
-                >
-                  <Link href="/auth/signup">Sign Up</Link>
-                </Button>
-              </div>
+              <>
+                {/* Show only Sign In on mobile */}
+                <div className="flex items-center md:hidden">
+                  <Button
+                    size="lg"
+                    asChild
+                    className="bg-[#228201] text-primary-foreground rounded-[50px]"
+                  >
+                    <Link href="/auth/signup">Sign Up</Link>
+                  </Button>
+                </div>
+
+                {/* Show both on desktop */}
+                <div className="hidden md:flex items-center space-x-2">
+                  <Button
+                    variant="ghost"
+                    size="lg"
+                    asChild
+                    className="border rounded-[50px]"
+                  >
+                    <Link href="/auth/signin">Sign In</Link>
+                  </Button>
+                  <Button
+                    size="lg"
+                    asChild
+                    className="bg-[#228201] text-primary-foreground rounded-[50px]"
+                  >
+                    <Link href="/auth/signup">Sign Up</Link>
+                  </Button>
+                </div>
+              </>
             )}
           </nav>
         </div>

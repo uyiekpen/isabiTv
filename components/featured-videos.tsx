@@ -119,7 +119,7 @@ export function FeaturedVideos() {
         <div className="mt-8 text-center">
           <Link
             href="/library"
-            className="inline-flex items-center justify-center rounded-md bg-[#228201] px-6 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex items-center justify-center rounded-md bg-[#228201] px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-primary/90"
           >
             View All Videos
           </Link>

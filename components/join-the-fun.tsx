@@ -10,10 +10,13 @@ export function JoinTheFun() {
       <div className="container">
         <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
           <div>
-            <h2 className="mb-4 text-3xl font-bold tracking-tight">Ready to Join the Fun?</h2>
+            <h2 className="mb-4 text-3xl font-bold tracking-tight">
+              Ready to Join the Fun?
+            </h2>
             <p className="mb-6 text-lg text-muted-foreground">
-              Start your creative journey today. Upload your first video, participate in contests, and connect with a
-              community of passionate creators.
+              Start your creative journey today. Upload your first video,
+              participate in contests, and connect with a community of
+              passionate creators.
             </p>
 
             <div className="mb-8 space-y-4">
@@ -38,7 +41,7 @@ export function JoinTheFun() {
             </div>
 
             <div className="flex flex-col gap-4 sm:flex-row">
-              <Button size="lg" asChild >
+              <Button size="lg" asChild className="bg-[#228201] text-white ">
                 <Link href="/auth/signup">Get Started Free</Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
@@ -50,22 +53,29 @@ export function JoinTheFun() {
           <Card>
             <CardHeader>
               <CardTitle>Stay Updated</CardTitle>
-              <CardDescription>Get notified about new contests, features, and creator spotlights</CardDescription>
+              <CardDescription>
+                Get notified about new contests, features, and creator
+                spotlights
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <form className="space-y-4">
                 <Input type="email" placeholder="Enter your email" />
-                <Button type="submit" className="w-full">
+                <Button
+                  type="submit"
+                  className="bg-[#228201] text-white w-full"
+                >
                   Subscribe to Newsletter
                 </Button>
               </form>
               <p className="mt-4 text-xs text-muted-foreground">
-                By subscribing, you agree to our privacy policy and terms of service.
+                By subscribing, you agree to our privacy policy and terms of
+                service.
               </p>
             </CardContent>
           </Card>
         </div>
       </div>
     </section>
-  )
+  );
 }

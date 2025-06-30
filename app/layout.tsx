@@ -9,9 +9,8 @@ import { AuthProvider } from "@/components/auth-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "VideoHub - Share Your Story",
+  title: "isabiTv - Share Your Story",
   description: "A platform for creators to share videos and participate in contests",
-    generator: 'v0.dev'
 }
 
 export default function RootLayout({

@@ -75,12 +75,10 @@ export function HeroSection() {
                 {slide.description}
               </p>
               <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-               
                 <Button
                   size="lg"
-                  variant="outline"
                   asChild
-                  className="text-black"
+                  className="bg-[#228201] text-white "
                 >
                   <Link href="/library">Browse Videos</Link>
                 </Button>
