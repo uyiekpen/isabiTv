@@ -32,7 +32,7 @@ export function Footer() {
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center space-x-2">
               <Image
-                src="/img/isabitv.svg"
+                src="/isabitv.svg"
                 height={50}
                 width={100}
                 alt="logo.svg"

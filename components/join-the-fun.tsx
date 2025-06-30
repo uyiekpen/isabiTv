@@ -38,7 +38,7 @@ export function JoinTheFun() {
             </div>
 
             <div className="flex flex-col gap-4 sm:flex-row">
-              <Button size="lg" asChild>
+              <Button size="lg" asChild >
                 <Link href="/auth/signup">Get Started Free</Link>
               </Button>
               <Button size="lg" variant="outline" asChild>

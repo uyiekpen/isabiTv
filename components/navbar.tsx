@@ -49,7 +49,7 @@ export function Navbar() {
         <div className="mr-4 hidden md:flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
             <Image
-              src="/img/isabitv.svg"
+              src="/isabitv.svg"
               height={50}
               width={100}
               alt="logo.svg"
@@ -73,8 +73,12 @@ export function Navbar() {
           </SheetTrigger>
           <SheetContent side="left" className="pr-0">
             <Link href="/" className="flex items-center space-x-2">
-              <Play className="h-6 w-6" />
-              <span className="font-bold">VideoHub</span>
+              <Image
+                src="/isabitv.svg"
+                height={50}
+                width={100}
+                alt="logo.svg"
+              />
             </Link>
             <div className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
               <div className="flex flex-col space-y-3">
