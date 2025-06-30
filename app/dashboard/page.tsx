@@ -67,7 +67,7 @@ export default function DashboardPage() {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <main className="container py-8">
+      <main className="container p-8 flex justify-center flex-col ">
         <div className="mb-8">
           <h1 className="mb-4 text-3xl font-bold">Creator Dashboard</h1>
           <p className="text-muted-foreground">Manage your videos, track performance, and view contest entries</p>

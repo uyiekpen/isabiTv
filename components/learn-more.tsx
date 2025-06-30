@@ -42,7 +42,7 @@ export function LearnMore() {
       <div className="container">
         <div className="mb-12 text-center">
           <h2 className="mb-4 text-3xl font-bold tracking-tight">
-            Why Choose VideoHub?
+            Why Choose IsabiTv?
           </h2>
           <p className="mx-auto max-w-2xl text-muted-foreground">
             We provide everything you need to share your creativity with the

@@ -84,16 +84,16 @@ export default function AboutPage() {
         {/* Hero Section */}
         <section className="bg-gradient-to-r from-primary to-primary/80 py-20 text-white">
           <div className="container">
-            <div className="mx-auto max-w-4xl text-center">
+            <div className="mx-auto max-w text-center">
               <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-6xl">
                 What We Believe
               </h1>
-              <p className="mb-8 text-xl leading-relaxed">
+              {/* <p className=" text-xl leading-relaxed">
                 Use online videos to empower Black communities
-              </p>
+              </p> */}
               <p className="text-lg opacity-90">
                 We built the platform for Afrocentric content. Let's discover
-                what's possible when you have a dedicated environment designed
+                what's possible <br/>when you have a dedicated environment designed
                 to feature content FROM our Black community and FOR our Black
                 community.
               </p>
