@@ -119,13 +119,15 @@ export default function SignUpPage() {
                   alt="logo.svg"
                 />
               </div>
-              <CardTitle className="text-2xl text-center">Create Your Account</CardTitle>
+              <CardTitle className="text-2xl text-center">
+                Create Your Account
+              </CardTitle>
               <CardDescription className="text-center">
                 Join thousands of creators and viewers in our community
               </CardDescription>
             </CardHeader>
 
-            <CardContent className="px-6 pb-8 overflow-y-auto flex-1">
+            <CardContent className="px-6 pb-8 flex-1 md:overflow-y-auto">
               <form onSubmit={handleSubmit} className="space-y-4 pb-4">
                 {/* Name Fields */}
                 <div className="grid gap-4 sm:grid-cols-2">
