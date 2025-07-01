@@ -4,6 +4,7 @@ import { FeaturedVideos } from "@/components/featured-videos"
 import { LearnMore } from "@/components/learn-more"
 import { JoinTheFun } from "@/components/join-the-fun"
 import { Footer } from "@/components/footer"
+import { TrendingVideo } from "@/components/trending-videos"
 
 export default function HomePage() {
   return (
@@ -12,6 +13,7 @@ export default function HomePage() {
       <main>
         <HeroSection />
         <FeaturedVideos />
+        <TrendingVideo/>
         <LearnMore />
         <JoinTheFun />
       </main>

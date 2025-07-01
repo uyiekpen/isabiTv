@@ -1,31 +1,38 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, Play } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 const heroSlides = [
   {
     id: 1,
     title: "Share Your Creative Vision",
+    subtitle: "Over 10,000 Videos and Creative Content",
     description:
-      "Upload, share, and discover amazing videos from creators around the world",
-    image: "/placeholder.svg?height=600&width=1200",
+      "Upload, share, and discover amazing videos from creators around the world. Join our community today!",
+    ctaText: "Browse Videos",
+    image: "/auth.jpg",
   },
   {
     id: 2,
     title: "Join Our Monthly Contests",
-    description: "Compete with other creators and win amazing prizes",
-    image: "/placeholder.svg?height=600&width=1200",
+    subtitle: "Win Amazing Prizes Every Month",
+    description:
+      "Compete with other creators and showcase your talent. Monthly contests with cash prizes and recognition.",
+    ctaText: "View Contests",
+    image: "/2.jpg",
   },
   {
     id: 3,
     title: "Build Your Audience",
+    subtitle: "Connect with Viewers Worldwide",
     description:
-      "Connect with viewers who love your content and grow your following",
-    image: "/placeholder.svg?height=600&width=1200",
+      "Connect with viewers who love your content and grow your following. Build your personal brand today.",
+    ctaText: "Start Creating",
+    image: "/3.jpg",
   },
 ];
 
@@ -36,6 +43,7 @@ export function HeroSection() {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
     }, 5000);
+
     return () => clearInterval(timer);
   }, []);
 
@@ -50,74 +58,76 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative h-[70vh] overflow-hidden">
-      {heroSlides.map((slide, index) => (
-        <div
-          key={slide.id}
-          className={`absolute inset-0 transition-opacity duration-1000 ${
-            index === currentSlide ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <Image
-            src={slide.image || "/placeholder.svg"}
-            alt={slide.title}
-            fill
-            className="object-cover"
-            priority={index === 0}
-          />
-          <div className="absolute inset-0 bg-black/40" />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="container text-center text-white">
-              <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-6xl">
-                {slide.title}
-              </h1>
-              <p className="mx-auto mb-8 max-w-2xl text-lg sm:text-xl">
-                {slide.description}
-              </p>
-              <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-                <Button
-                  size="lg"
-                  asChild
-                  className="bg-[#228201] text-white "
-                >
-                  <Link href="/library">Browse Videos</Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      ))}
+    <section className="relative h-[90vh] md:h-[500px] w-full overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src={heroSlides[currentSlide].image}
+          alt={heroSlides[currentSlide].title}
+          fill
+          className="object-cover"
+          priority
+        />
+        {/* Gradient Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+        <div className="absolute inset-0 bg-black/20" />
+      </div>
 
-      {/* Navigation Arrows */}
+      {/* Text Content */}
+      <div className="relative z-10 flex flex-col justify-center items-center text-center text-white px-4 pt-28 h-full space-y-6 max-w-2xl mx-auto">
+        <h2 className="text-lg font-medium text-[#2DA105]">
+          {heroSlides[currentSlide].subtitle}
+        </h2>
+        <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+          {heroSlides[currentSlide].title}
+        </h1>
+        <p className="text-lg md:text-xl text-gray-200 leading-relaxed">
+          {heroSlides[currentSlide].description}
+        </p>
+        <Button
+          size="lg"
+          asChild
+          className="bg-[#228201] hover:bg-[#1a6501] text-white text-lg px-8 py-3"
+        >
+          <Link href="/library">{heroSlides[currentSlide].ctaText}</Link>
+        </Button>
+
+        {/* Dots */}
+        {/* <div className="flex space-x-2 pt-6">
+          {heroSlides.map((_, index) => (
+            <button
+              key={index}
+              className={`h-3 w-3 rounded-full transition-all ${
+                index === currentSlide
+                  ? "bg-[#2DA105] scale-110"
+                  : "bg-white/50 hover:bg-white/80"
+              }`}
+              onClick={() => setCurrentSlide(index)}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div> */}
+      </div>
+
+      {/* Arrows */}
       <Button
         variant="ghost"
         size="icon"
-        className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/20"
+        className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 h-12 w-12 z-10"
         onClick={prevSlide}
+        aria-label="Previous Slide"
       >
         <ChevronLeft className="h-6 w-6" />
       </Button>
       <Button
         variant="ghost"
         size="icon"
-        className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/20"
+        className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 h-12 w-12 z-10"
         onClick={nextSlide}
+        aria-label="Next Slide"
       >
         <ChevronRight className="h-6 w-6" />
       </Button>
-
-      {/* Dots Indicator */}
-      <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 space-x-2">
-        {heroSlides.map((_, index) => (
-          <button
-            key={index}
-            className={`h-2 w-2 rounded-full transition-colors ${
-              index === currentSlide ? "bg-white" : "bg-white/50"
-            }`}
-            onClick={() => setCurrentSlide(index)}
-          />
-        ))}
-      </div>
     </section>
   );
 }

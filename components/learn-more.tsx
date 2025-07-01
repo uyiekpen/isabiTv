@@ -38,7 +38,7 @@ const features = [
 
 export function LearnMore() {
   return (
-    <section className="bg-muted/50 p-6 flex justify-center w-full">
+    <section className="bg-muted/50 p-6 md:p-12 flex justify-center w-full">
       <div className="container">
         <div className="mb-12 text-center">
           <h2 className="mb-4 text-3xl font-bold tracking-tight">

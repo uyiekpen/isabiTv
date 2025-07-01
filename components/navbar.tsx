@@ -27,6 +27,7 @@ const navigation = [
 export function Navbar() {
   const { user, logout } = useAuth();
   const pathname = usePathname();
+  const isHome = pathname === "/";
 
   const NavLinks = () => (
     <>
@@ -34,8 +35,14 @@ export function Navbar() {
         <Link
           key={item.name}
           href={item.href}
-          className={`text-sm font-medium transition-colors hover:text-primary ${
-            pathname === item.href ? "text-[#2DA105]" : "text-muted-foreground"
+          className={`text-sm font-medium transition-colors duration-300 ${
+            pathname === item.href
+              ? isHome
+                ? "text-white"
+                : "text-[#2DA105]"
+              : isHome
+              ? "text-white/80 hover:text-white"
+              : "text-muted-foreground hover:text-[#2DA105]"
           }`}
         >
           {item.name}
@@ -45,11 +52,16 @@ export function Navbar() {
   );
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 p-6 flex justify-center items-center">
+    <header className="absolute top-0 left-0 z-50 w-full p-6 md:p-12 bg-transparent flex justify-center items-center">
       <div className="container flex h-14 items-center">
         {/* Desktop Nav & Logo */}
         <div className="mr-4 hidden md:flex">
-          <Link href="/" className="mr-6 flex items-center space-x-2">
+          <Link
+            href="/"
+            className={`mr-6 flex items-center space-x-2 ${
+              isHome ? "text-white" : "text-black"
+            }`}
+          >
             <Image src="/isabitv.svg" height={50} width={100} alt="logo.svg" />
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium">
@@ -62,7 +74,9 @@ export function Navbar() {
           <SheetTrigger asChild>
             <Button
               variant="ghost"
-              className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
+              className={`mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden ${
+                isHome ? "text-white" : "text-black"
+              }`}
             >
               <Menu className="h-5 w-5" />
               <span className="sr-only">Toggle Menu</span>
@@ -88,7 +102,12 @@ export function Navbar() {
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
           {/* Logo for mobile */}
           <div className="w-full flex-1 md:w-auto md:flex-none">
-            <Link href="/" className="flex items-center space-x-2 md:hidden">
+            <Link
+              href="/"
+              className={`flex items-center space-x-2 md:hidden ${
+                isHome ? "text-white" : "text-black"
+              }`}
+            >
               <Image
                 src="/isabitv.svg"
                 height={50}
@@ -153,7 +172,7 @@ export function Navbar() {
               </>
             ) : (
               <>
-                {/* Show only Sign In on mobile */}
+                {/* Show only Sign Up on mobile */}
                 <div className="flex items-center md:hidden">
                   <Button
                     size="lg"

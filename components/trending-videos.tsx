@@ -67,13 +67,13 @@ const featuredVideos = [
   },
 ];
 
-export function FeaturedVideos() {
+export function TrendingVideo() {
   return (
-    <section className="p-12 bg-gray-50">
+    <section className="p-6 md:p-12 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="mb-8">
           <h2 className="mb-2 text-3xl font-bold tracking-tight">
-            Recent Videos
+            Trending Videos
           </h2>
           <p className="text-muted-foreground">
             Discover the most popular content from our amazing creators
@@ -137,14 +137,14 @@ export function FeaturedVideos() {
           ))}
         </div>
 
-        {/* <div className="mt-12 text-center">
+        <div className="mt-12 text-center">
           <Link
             href="/library"
             className="inline-flex items-center justify-center rounded-lg bg-[#228201] px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-[#1a6501] shadow-lg hover:shadow-xl"
           >
             View All Videos
           </Link>
-        </div> */}
+        </div>
       </div>
     </section>
   );
