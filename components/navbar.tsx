@@ -12,10 +12,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useAuth } from "@/components/auth-provider";
 import { Upload, User, Settings, LogOut, Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Image from "next/image";
+import { useAuth } from "./auth-provider-safe";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -27,6 +27,8 @@ const navigation = [
 
 export function Navbar() {
   const { user, logout } = useAuth();
+  console.log("Current user in navbar:", user); // Add this line for debugging
+
   const pathname = usePathname();
 
   const isHome = pathname === "/";
@@ -66,6 +68,22 @@ export function Navbar() {
       })}
     </>
   );
+
+  const handleLogout = async () => {
+    try {
+      console.log("Starting logout process...");
+      await logout();
+      console.log("Logout completed successfully");
+
+      // Redirect to home page after logout
+      window.location.href = "/";
+    } catch (error) {
+      console.error("Logout failed:", error);
+      // Force redirect to home page anyway
+      window.location.href = "/";
+    }
+   
+  };
 
   return (
     <header
@@ -183,7 +201,7 @@ export function Navbar() {
                       </DropdownMenuItem>
                     )}
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={logout}>
+                    <DropdownMenuItem onClick={handleLogout}>
                       <LogOut className="mr-2 h-4 w-4" />
                       Log out
                     </DropdownMenuItem>
@@ -209,10 +227,10 @@ export function Navbar() {
                     variant="ghost"
                     size="lg"
                     asChild
-                    className={`border-[3px] rounded-[50px] ${
-                      scrolled
-                        ? "border-[#228201] text-black"
-                        : "border-[#228201] text-white"
+                    className={`border-[3px] rounded-[50px] transition-colors duration-300 ${
+                      false
+                        ? "border-[#228201] text-black hover:bg-[#228201] hover:text-white"
+                        : "border-[#228201] text-white hover:bg-[#228201] hover:text-black"
                     }`}
                   >
                     <Link href="/auth/signin">Sign In</Link>

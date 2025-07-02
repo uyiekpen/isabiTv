@@ -16,7 +16,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { useAuth } from "@/components/auth-provider";
+import { useAuth } from "@/components/auth-provider-safe";
 import { useToast } from "@/hooks/use-toast";
 
 export default function SignUpPage() {

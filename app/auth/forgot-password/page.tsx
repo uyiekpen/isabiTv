@@ -15,7 +15,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/lib/supabase";
+import { getSupabase, isSupabaseAvailable } from "@/lib/supabase-client";
 import { ArrowLeft, Mail } from "lucide-react";
 
 export default function ForgotPasswordPage() {
@@ -29,6 +29,13 @@ export default function ForgotPasswordPage() {
     setIsLoading(true);
 
     try {
+      if (!isSupabaseAvailable()) {
+        throw new Error(
+          "Authentication service is not available. Please check your configuration."
+        );
+      }
+
+      const supabase = getSupabase();
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
         redirectTo: `${window.location.origin}/auth/reset-password`,
       });
