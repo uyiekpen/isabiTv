@@ -6,7 +6,8 @@ import { Footer } from "@/components/footer";
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import { Eye, Heart, Clock, Play } from "lucide-react";
+import { Eye, Heart, Clock, Play, Star } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface ContestVideo {
   id: string;
@@ -27,7 +28,7 @@ const contestVideos: ContestVideo[] = [
     id: "c1",
     title: "Short Film Contest Entry",
     creator: "FilmWizard",
-    thumbnail: "/thumbnails/shortfilm.jpg",
+    thumbnail: "/img3.jpg",
     duration: "4:45",
     views: "8.2K",
     likes: "1.9K",
@@ -41,7 +42,7 @@ const contestVideos: ContestVideo[] = [
     id: "c2",
     title: "Music Video Challenge",
     creator: "SoundWave",
-    thumbnail: "/thumbnails/musicvideo.jpg",
+    thumbnail: "/img3.jpg",
     duration: "3:15",
     views: "12.1K",
     likes: "2.5K",
@@ -55,7 +56,7 @@ const contestVideos: ContestVideo[] = [
     id: "c3",
     title: "Animation Showdown",
     creator: "PixelCraft",
-    thumbnail: "/thumbnails/animation.jpg",
+    thumbnail: "/img2.jpg",
     duration: "6:30",
     views: "5.7K",
     likes: "1.1K",
@@ -69,7 +70,7 @@ const contestVideos: ContestVideo[] = [
     id: "c4",
     title: "Drone Footage Finals",
     creator: "SkyHighVisuals",
-    thumbnail: "/thumbnails/drone.jpg",
+    thumbnail: "/img1.jpg",
     duration: "2:50",
     views: "22.4K",
     likes: "3.3K",
@@ -93,67 +94,70 @@ export default function ContestPage() {
 
   const renderSection = (title: string, videosToRender: ContestVideo[]) => (
     <section className="mb-12">
-      <h2 className="text-2xl font-bold mb-4">{title}</h2>
+      <h2 className="text-3xl font-bold mb-6 text-[#2DA105]">{title}</h2>
       {videosToRender.length === 0 ? (
         <p className="text-muted-foreground">No videos in this section.</p>
       ) : (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {videosToRender.map((video) => (
-            <Link
+            <Card
               key={video.id}
-              href={`/library/contest-details/${video.id}`}
-              className="group w-full max-w-sm"
+              className="group overflow-hidden border border-border bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
             >
-              <div className="overflow-hidden rounded-lg border shadow-sm hover:shadow-md transition">
-                <div className="relative aspect-video overflow-hidden">
-                  <Image
-                    src={video.thumbnail || "/placeholder.svg"}
-                    alt={video.title}
-                    fill
-                    className="object-cover transition-transform group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                    <div className="rounded-full bg-white/90 p-3">
-                      <Play className="h-6 w-6 text-black" />
+              <CardContent className="p-0">
+                <Link href={`/library/video/${video.id}`}>
+                  <div className="relative aspect-video overflow-hidden">
+                    <Image
+                      src={video.thumbnail || "/placeholder.svg"}
+                      alt={video.title}
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/0 transition-colors group-hover:bg-black/30" />
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100">
+                      <div className="rounded-full bg-white/90 p-3 backdrop-blur-sm">
+                        <Play className="h-6 w-6 text-black fill-black" />
+                      </div>
+                    </div>
+                    <div className="absolute top-2 left-2">
+                      <Badge
+                        variant="secondary"
+                        className="bg-[#2DA105]/90 text-white text-xs"
+                      >
+                        {video.category}
+                      </Badge>
+                    </div>
+                    <div className="absolute bottom-2 right-2 rounded bg-black/80 px-2 py-1 text-xs text-white">
+                      {video.duration}
                     </div>
                   </div>
-                  <div className="absolute bottom-2 right-2 rounded bg-black/80 px-2 py-1 text-xs text-white">
-                    {video.duration}
-                  </div>
-                </div>
+                </Link>
+
                 <div className="p-4">
-                  <Badge variant="secondary" className="mb-2">
-                    {video.category}
-                  </Badge>
-                  <h3 className="mb-1 font-semibold line-clamp-2 group-hover:text-primary">
-                    {video.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground line-clamp-2 mb-2">
-                    {video.description}
-                  </p>
-                  <p className="mb-2 text-sm text-muted-foreground">
-                    by {video.creator}
-                  </p>
-                  <div className="flex items-center justify-between text-xs text-muted-foreground">
-                    <div className="flex items-center space-x-3">
-                      <div className="flex items-center space-x-1">
-                        <Eye className="h-3 w-3" />
-                        <span>{video.views}</span>
-                      </div>
-                      <div className="flex items-center space-x-1">
-                        <Heart className="h-3 w-3" />
-                        <span>{video.likes}</span>
-                      </div>
-                    </div>
+                  <Link href={`/library/video/${video.id}`}>
+                    <h3 className="font-semibold text-base line-clamp-2 hover:text-[#2DA105] transition-colors mb-2">
+                      {video.title}
+                    </h3>
+                  </Link>
+
+                  <div className="flex items-center justify-between text-xs text-muted-foreground mb-2">
+                    <span>by {video.creator}</span>
                     <div className="flex items-center space-x-1">
                       <Clock className="h-3 w-3" />
                       <span>{video.uploadDate}</span>
                     </div>
                   </div>
+
+                  <div className="flex items-center justify-between text-xs text-muted-foreground">
+                    <span>{video.views} views</span>
+                    <div className="flex items-center space-x-1">
+                      <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
+                      <span>{video.likes}</span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </Link>
+              </CardContent>
+            </Card>
           ))}
         </div>
       )}

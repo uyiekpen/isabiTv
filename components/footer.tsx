@@ -13,8 +13,10 @@ const footerLinks = {
     { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" },
     { name: "Privacy Policy", href: "/privacy" },
+    { name: "Cookies", href: "/cookies" },
+
     { name: "Terms of Service", href: "/terms" },
-    { name: "GDR policy", href: "/terms" },
+    { name: "GDR policy", href: "/gdr-policy" },
   ],
   creators: [
     { name: "Become a Creator", href: "/become-creator" },

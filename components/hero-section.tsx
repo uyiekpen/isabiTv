@@ -58,23 +58,25 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative h-[700px]  md:h-[100vh] w-full overflow-hidden">
+    <section className="relative h-[700px] md:h-[100vh] w-full overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
           src={heroSlides[currentSlide].image}
           alt={heroSlides[currentSlide].title}
           fill
-          className="object-cover"
+          className="object-cover transition-opacity duration-500 ease-in-out"
           priority
         />
-        {/* Gradient Overlays */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/90 to-transparent" />
         <div className="absolute inset-0 bg-black/20" />
       </div>
 
-      {/* Text Content */}
-      <div className="relative z-10 flex flex-col justify-center items-center text-center text-white px-4 pt-28 h-full space-y-6 max-w-2xl mx-auto">
+      {/* Slide Content */}
+      <div
+        key={currentSlide}
+        className="relative z-10 flex flex-col justify-center items-center text-center text-white px-4 pt-28 h-full space-y-6 max-w-2xl mx-auto animate-fade-in"
+      >
         <h2 className="text-lg font-medium text-[#2DA105]">
           {heroSlides[currentSlide].subtitle}
         </h2>
@@ -91,22 +93,6 @@ export function HeroSection() {
         >
           <Link href="/library">{heroSlides[currentSlide].ctaText}</Link>
         </Button>
-
-        {/* Dots */}
-        {/* <div className="flex space-x-2 pt-6">
-          {heroSlides.map((_, index) => (
-            <button
-              key={index}
-              className={`h-3 w-3 rounded-full transition-all ${
-                index === currentSlide
-                  ? "bg-[#2DA105] scale-110"
-                  : "bg-white/50 hover:bg-white/80"
-              }`}
-              onClick={() => setCurrentSlide(index)}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div> */}
       </div>
 
       {/* Arrows */}

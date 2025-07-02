@@ -1,23 +1,24 @@
 "use client";
 
 import type React from "react";
+
+import { useAuth } from "@/components/auth-provider"; // Assuming useAuth is a custom hook
+import { useToast } from "@/hooks/use-toast"; // Assuming useToast is a custom hook
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { useAuth } from "@/components/auth-provider";
-import { useToast } from "@/hooks/use-toast";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function SignUpPage() {
   const [formData, setFormData] = useState({
@@ -31,9 +32,8 @@ export default function SignUpPage() {
     agreeToGuidelines: false,
     subscribeNewsletter: true,
   });
-
   const [isLoading, setIsLoading] = useState(false);
-  const { login } = useAuth();
+  const { signup } = useAuth();
   const { toast } = useToast();
   const router = useRouter();
 
@@ -44,6 +44,15 @@ export default function SignUpPage() {
       toast({
         title: "Password mismatch",
         description: "Please make sure your passwords match.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (formData.password.length < 6) {
+      toast({
+        title: "Password too short",
+        description: "Password must be at least 6 characters long.",
         variant: "destructive",
       });
       return;
@@ -61,19 +70,25 @@ export default function SignUpPage() {
     setIsLoading(true);
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate delay
-      await login(formData.email, formData.password);
+      await signup({
+        email: formData.email,
+        password: formData.password,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        role: formData.accountType as "creator",
+        subscribeNewsletter: formData.subscribeNewsletter,
+      });
 
       toast({
         title: "Welcome to iSabiTV!",
-        description: "Your creator account has been created successfully.",
+        description: "Please check your email to verify your account.",
       });
 
-      router.push("/dashboard");
-    } catch (error) {
+      router.push("/auth/verify-email");
+    } catch (error: any) {
       toast({
         title: "Error creating account",
-        description: "Please try again or contact support.",
+        description: error.message || "Please try again or contact support.",
         variant: "destructive",
       });
     } finally {
@@ -112,7 +127,7 @@ export default function SignUpPage() {
                   src="/isabitv.svg"
                   height={50}
                   width={100}
-                  alt="logo.svg"
+                  alt="iSabiTV Logo"
                 />
               </div>
               <CardTitle className="text-2xl text-center">
@@ -173,10 +188,11 @@ export default function SignUpPage() {
                       id="password"
                       name="password"
                       type="password"
-                      placeholder="Create a password"
+                      placeholder="Create a password (min 6 chars)"
                       value={formData.password}
                       onChange={handleInputChange}
                       required
+                      minLength={6}
                     />
                   </div>
                   <div className="space-y-2">

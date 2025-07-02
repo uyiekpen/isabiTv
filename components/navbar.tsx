@@ -1,5 +1,6 @@
 "use client";
 
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -33,6 +34,16 @@ export function Navbar() {
   const isAbout = pathname === "/about";
   const isLightBg = isHome || isContact || isAbout;
 
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 80);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const NavLinks = () => (
     <>
       {navigation.map((item) => {
@@ -41,8 +52,8 @@ export function Navbar() {
         const linkClasses = [
           "text-sm font-medium transition-colors duration-300",
           isActive
-            ? "text-[#2DA105]" // Green when active
-            : isLightBg
+            ? "text-[#2DA105]"
+            : isLightBg && !scrolled
             ? "text-white/80 hover:text-white"
             : "text-muted-foreground hover:text-[#2DA105]",
         ].join(" ");
@@ -55,17 +66,24 @@ export function Navbar() {
       })}
     </>
   );
-  
 
   return (
-    <header className="fixed top-0 left-0 z-50 w-full p-6 md:px-12 bg-transparent flex justify-center items-center">
+    <header
+      className={`fixed top-0 left-0 z-50 w-full p-6 md:px-12 flex justify-center items-center transition-all duration-300 ${
+        scrolled
+          ? "bg-white shadow-md"
+          : isLightBg
+          ? "bg-transparent"
+          : "bg-white"
+      }`}
+    >
       <div className="container flex items-center">
         {/* Desktop Nav & Logo */}
         <div className="mr-4 hidden md:flex">
           <Link
             href="/"
             className={`mr-6 flex items-center space-x-2 ${
-              isLightBg ? "text-white" : "text-black"
+              scrolled || !isLightBg ? "text-black" : "text-white"
             }`}
           >
             <Image src="/isabitv.svg" height={50} width={100} alt="logo" />
@@ -81,7 +99,7 @@ export function Navbar() {
             <Button
               variant="ghost"
               className={`mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden ${
-                isLightBg ? "text-white" : "text-black"
+                scrolled || !isLightBg ? "text-black" : "text-white"
               }`}
             >
               <Menu className="h-5 w-5" />
@@ -106,14 +124,14 @@ export function Navbar() {
             <Link
               href="/"
               className={`flex items-center space-x-2 md:hidden ${
-                isLightBg ? "text-white" : "text-black"
+                scrolled || !isLightBg ? "text-black" : "text-white"
               }`}
             >
               <Image src="/isabitv.svg" height={50} width={100} alt="logo" />
             </Link>
           </div>
 
-          {/* Right Side Auth/Buttons */}
+          {/* Auth buttons or user avatar */}
           <nav className="flex items-center space-x-2">
             {user ? (
               <>
@@ -179,7 +197,7 @@ export function Navbar() {
                   <Button
                     size="lg"
                     asChild
-                    className="bg-[#228201] text-primary-foreground rounded-[50px]"
+                    className="bg-[#228201] text-white rounded-[50px]"
                   >
                     <Link href="/auth/signup">Sign Up</Link>
                   </Button>
@@ -191,14 +209,18 @@ export function Navbar() {
                     variant="ghost"
                     size="lg"
                     asChild
-                    className="border-3 rounded-[50px] border-[#228201] text-white"
+                    className={`border-[3px] rounded-[50px] ${
+                      scrolled
+                        ? "border-[#228201] text-black"
+                        : "border-[#228201] text-white"
+                    }`}
                   >
                     <Link href="/auth/signin">Sign In</Link>
                   </Button>
                   <Button
                     size="lg"
                     asChild
-                    className="bg-[#228201] text-primary-foreground rounded-[50px]"
+                    className="bg-[#228201] text-white rounded-[50px]"
                   >
                     <Link href="/auth/signup">Sign Up</Link>
                   </Button>

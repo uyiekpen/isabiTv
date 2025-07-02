@@ -91,9 +91,8 @@ export default function AboutPage() {
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl font-medium opacity-90">
               We built the platform for Afrocentric content. Let's discover
-              what's possible
-              <br className="hidden md:inline" />
-              when you have a dedicated environment designed to feature content
+              what's possible when you have a dedicated environment designed to
+              feature content,
               <br className="hidden md:inline" />
               <span className="font-semibold text-white">
                 FROM our Black community and FOR our Black community.
@@ -102,38 +101,38 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Vision Section */}
-        <section className="p-8 flex justify-center">
-          <div className="container">
-            <div className="mx-auto max-w-4xl"></div>
-          </div>
-        </section>
+       
 
         {/* Impact Section */}
-        <section className="bg-muted/50 p-8 flex justify-center">
+        <section className="bg-muted/50 py-16 px-6 sm:px-12 flex justify-center">
           <div className="container">
-            <div className="mx-auto max-w-5xl">
-              <div className="space-y-8">
+            <div className="mx-auto max-w-6xl">
+              <div className="space-y-16">
+                {" "}
+                {/* Increased spacing between items */}
                 {impact.map((item, index) => (
                   <div key={index} className="overflow-hidden">
                     <div
-                      className={`flex flex-col ${
+                      className={`flex flex-col gap-6 ${
                         index % 2 === 0 ? "sm:flex-row" : "sm:flex-row-reverse"
                       }`}
                     >
-                      <div className="relative w-full sm:w-1/2 h-64 sm:h-auto">
+                      {/* Larger Image Section */}
+                      <div className="relative w-full sm:w-[55%] h-80 sm:h-[400px] rounded-lg overflow-hidden">
                         <Image
                           src={item.image}
                           alt={item.title}
                           fill
-                          className="object-cover"
+                          className="object-cover rounded-lg"
                         />
                       </div>
-                      <div className="flex w-full sm:w-1/2 flex-col justify-center p-6">
-                        <h3 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
+
+                      {/* Text Section */}
+                      <div className="flex w-full sm:w-[45%] flex-col justify-center p-6">
+                        <h3 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white">
                           {item.title}
                         </h3>
-                        <p className="text-base text-muted-foreground dark:text-gray-300">
+                        <p className="text-lg text-muted-foreground dark:text-gray-300">
                           {item.description}
                         </p>
                       </div>
