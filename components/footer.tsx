@@ -27,7 +27,7 @@ const footerLinks = {
 export function Footer() {
   return (
     <footer className="border-t bg-[#228201] text-white flex justify-center mt-8">
-      <div className="container p-6 mt-8">
+      <div className="container p-6 md:p-12 mt-8">
         <div className="grid gap-8 lg:grid-cols-4">
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center space-x-2">

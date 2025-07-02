@@ -6,7 +6,7 @@ import Link from "next/link"
 
 export function JoinTheFun() {
   return (
-    <section className="p-6 md:p-12flex justify-center">
+    <section className="p-6 md:p-12 flex justify-center">
       <div className="container">
         <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
           <div>

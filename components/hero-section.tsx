@@ -42,7 +42,7 @@ export function HeroSection() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 5000);
+    }, 3000);
 
     return () => clearInterval(timer);
   }, []);
@@ -58,7 +58,7 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative h-[90vh] md:h-[500px] w-full overflow-hidden">
+    <section className="relative h-[700px]  md:h-[600px] w-full overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image

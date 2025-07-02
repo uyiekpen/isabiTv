@@ -48,7 +48,7 @@ const impact = [
     title: "About Us",
     description:
       "Our platform is dedicated to documenting, archiving, and preserving black stories. We believe that every voice matters and we strive to empower the black community by providing a space to share their experiences. Whether you're an individual, a small business, or a large organization, we welcome you to join us on this journey of discovery and growth. Our team is committed to providing the best experience for our users. We value transparency, authenticity, and inclusivity, and we aim to reflect these values in everything we do.",
-    image: "/images/impact-3.jpg",
+    image: "/auth.jpg",
   },
   {
     icon: Lightbulb,
@@ -57,22 +57,14 @@ const impact = [
       "A dedicated, safe space for valuable stories & content that elevates Black society",
     description:
       "A fundamental design choice of the iSabiTV platform is not to allow vulgar or sensual content. Too much of the available video content online is oversexualized, and we see this as a barrier to using video media to empower the next generation. Inspirational and educational stories can be more impactful when not overly sexualized, and iSabiTV will be the place for such high-quality content.",
-    image: "/images/impact-2.jpg",
-  },
-
-  {
-    icon: Star,
-    title: "Become A Creator",
-    description:
-      "We are building the largest online repository of stories showcasing Black culture, education and inspirational content. We work with produced and user-generated content creators. This includes Radio stations, TV stations, Independent creators, Journalists, and any enthusiasts that has a story or knowledge to tell. Upload and share Afrocentric stories and express yourself to the world with you voice.",
-    image: "/images/impact-4.jpg",
+    image: "/auth.jpg",
   },
   {
     icon: Star,
     title: "Become A Creator",
     description:
       "We are building the largest online repository of stories showcasing Black culture, education and inspirational content. We work with produced and user-generated content creators. This includes Radio stations, TV stations, Independent creators, Journalists, and any enthusiasts that has a story or knowledge to tell. Upload and share Afrocentric stories and express yourself to the world with you voice.",
-    image: "/images/impact-4.jpg",
+    image: "/auth.jpg",
   },
 ];
 
@@ -80,71 +72,40 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <main className=" flex justify-center flex-col">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-r from-primary to-primary/80 py-20 text-white">
-          <div className="container">
-            <div className="mx-auto max-w text-center">
-              <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-6xl">
-                What We Believe
-              </h1>
-              {/* <p className=" text-xl leading-relaxed">
-                Use online videos to empower Black communities
-              </p> */}
-              <p className="text-lg opacity-90">
-                We built the platform for Afrocentric content. Let's discover
-                what's possible <br/>when you have a dedicated environment designed
-                to feature content FROM our Black community and FOR our Black
-                community.
-              </p>
-            </div>
+      <main className="flex flex-col justify-center">
+        {/* Hero Section with background image */}
+        <section className="relative h-[80vh] flex items-center justify-center bg-black text-white">
+          <div className="absolute inset-0">
+            <Image
+              src="/auth.jpg" // Replace with your preferred hero background image
+              alt="Hero Background"
+              fill
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-black/60" />
+          </div>
+
+          <div className="relative z-10 px-4 text-center max-w-4xl">
+            <h1 className="mb-6 text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl leading-tight">
+              What We Believe
+            </h1>
+            <p className="text-lg sm:text-xl md:text-2xl font-medium opacity-90">
+              We built the platform for Afrocentric content. Let's discover
+              what's possible
+              <br className="hidden md:inline" />
+              when you have a dedicated environment designed to feature content
+              <br className="hidden md:inline" />
+              <span className="font-semibold text-white">
+                FROM our Black community and FOR our Black community.
+              </span>
+            </p>
           </div>
         </section>
 
         {/* Vision Section */}
         <section className="p-8 flex justify-center">
           <div className="container">
-            <div className="mx-auto max-w-4xl">
-              {/* <div className="mb-12 text-center">
-                <h2 className="mb-4 text-3xl font-bold tracking-tight">
-                  Our Vision
-                </h2>
-                <p className="text-xl text-muted-foreground">
-                  A dedicated, safe space for valuable stories & content that
-                  elevates Black society
-                </p>
-              </div> */}
-
-              {/* <Card className="border-none">
-                <p className="text-lg leading-relaxed">
-                  A fundamental design choice of the iSabiTV platform is not to
-                  allow vulgar or sensual content. Too much of the available
-                  video content online is oversexualized, and we see this as a
-                  barrier to using video media to empower the next generation.
-                  Inspirational and educational stories can be more impactful
-                  when not overly sexualized, and iSabiTV will be the place for
-                  such high-quality content.
-                </p>
-              </Card> */}
-
-              {/* <div className="grid gap-6 md:grid-cols-2">
-                {beliefs.map((belief, index) => (
-                  <Card key={index}>
-                    <div className="p-6">
-                      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                        <belief.icon className="h-6 w-6 text-primary" />
-                      </div>
-                      <h3 className="mb-2 text-xl font-semibold">
-                        {belief.title}
-                      </h3>
-                      <p className="text-base text-muted-foreground">
-                        {belief.description}
-                      </p>
-                    </div>
-                  </Card>
-                ))}
-              </div> */}
-            </div>
+            <div className="mx-auto max-w-4xl"></div>
           </div>
         </section>
 
@@ -152,19 +113,6 @@ export default function AboutPage() {
         <section className="bg-muted/50 p-8 flex justify-center">
           <div className="container">
             <div className="mx-auto max-w-5xl">
-              {/* <div className="mb-12 text-center">
-                <h2 className="mb-4 text-3xl font-bold tracking-tight">
-                  The Positive Impact of Online Video on the Black Community
-                </h2>
-                <p className="text-lg text-muted-foreground">
-                  Online video has already demonstrated the potential to change
-                  lives and empower anyone with an internet connection. iSabiTV
-                  sees an opportunity to accelerate the value created for Black
-                  communities worldwide by providing a platform that only
-                  features Black stories and content.
-                </p>
-              </div> */}
-
               <div className="space-y-8">
                 {impact.map((item, index) => (
                   <div key={index} className="overflow-hidden">
@@ -182,10 +130,10 @@ export default function AboutPage() {
                         />
                       </div>
                       <div className="flex w-full sm:w-1/2 flex-col justify-center p-6">
-                        <h3 className="mb-4 text-2xl font-bold text-gray-900">
+                        <h3 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
                           {item.title}
                         </h3>
-                        <p className="text-base text-muted-foreground">
+                        <p className="text-base text-muted-foreground dark:text-gray-300">
                           {item.description}
                         </p>
                       </div>
@@ -198,13 +146,13 @@ export default function AboutPage() {
         </section>
 
         {/* Call to Action */}
-        <section className="py-16">
+        <section className="py-16 bg-background dark:bg-gray-950">
           <div className="container">
             <div className="mx-auto max-w-2xl text-center">
-              <h2 className="mb-4 text-3xl font-bold tracking-tight">
+              <h2 className="mb-4 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
                 Join Our Community
               </h2>
-              <p className="mb-8 text-lg text-muted-foreground">
+              <p className="mb-8 text-lg text-muted-foreground dark:text-gray-400">
                 Be part of a movement that celebrates, educates, and empowers.
                 Whether you're a creator or viewer, your voice matters in
                 building a stronger Black community through storytelling.

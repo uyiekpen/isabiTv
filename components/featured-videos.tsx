@@ -9,7 +9,7 @@ const featuredVideos = [
     id: "1",
     title: "Amazing Sunset Timelapse",
     creator: "NatureFilms",
-    thumbnail: "/placeholder.svg?height=400&width=300",
+    thumbnail: "/img1.jpg",
     duration: "2:34",
     year: "2024",
     rating: "8.2",
@@ -19,7 +19,7 @@ const featuredVideos = [
     id: "2",
     title: "Cooking Masterclass: Italian Pasta",
     creator: "ChefMario",
-    thumbnail: "/placeholder.svg?height=400&width=300",
+    thumbnail: "/img1.jpg",
     duration: "15:42",
     year: "2024",
     rating: "9.1",
@@ -29,7 +29,7 @@ const featuredVideos = [
     id: "3",
     title: "Urban Photography Tips",
     creator: "StreetLens",
-    thumbnail: "/placeholder.svg?height=400&width=300",
+    thumbnail: "/img1.jpg",
     duration: "8:15",
     year: "2024",
     rating: "7.8",
@@ -39,7 +39,7 @@ const featuredVideos = [
     id: "4",
     title: "DIY Home Studio Setup",
     creator: "TechCreator",
-    thumbnail: "/placeholder.svg?height=400&width=300",
+    thumbnail: "/img1.jpg",
     duration: "12:08",
     year: "2024",
     rating: "8.5",
@@ -49,7 +49,7 @@ const featuredVideos = [
     id: "5",
     title: "Travel Vlog: Japan Adventure",
     creator: "WanderlustTV",
-    thumbnail: "/placeholder.svg?height=400&width=300",
+    thumbnail: "/img1.jpg",
     duration: "22:15",
     year: "2024",
     rating: "9.3",
@@ -59,7 +59,7 @@ const featuredVideos = [
     id: "6",
     title: "Music Production Basics",
     creator: "BeatMaker",
-    thumbnail: "/placeholder.svg?height=400&width=300",
+    thumbnail: "/img1.jpg",
     duration: "18:30",
     year: "2024",
     rating: "8.7",
@@ -69,10 +69,10 @@ const featuredVideos = [
 
 export function FeaturedVideos() {
   return (
-    <section className="p-12 bg-gray-50">
+    <section className="md:p-12 p-6 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="mb-8">
-          <h2 className="mb-2 text-3xl font-bold tracking-tight">
+          <h2 className="mb-2 text-3xl text-black font-bold tracking-tight">
             Recent Videos
           </h2>
           <p className="text-muted-foreground">

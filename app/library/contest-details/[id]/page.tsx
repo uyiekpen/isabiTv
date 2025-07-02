@@ -43,7 +43,7 @@ export default function ContestDetailPage() {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <main className="container px-4 py-10 max-w-4xl mx-auto">
+      <main className="container p-6 mt-40  mx-auto">
         <div className="relative aspect-video w-full mb-6 rounded-lg overflow-hidden">
           <Image
             src={video.thumbnail || "/placeholder.svg"}

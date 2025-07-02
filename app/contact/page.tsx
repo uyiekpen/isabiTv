@@ -27,6 +27,7 @@ import {
   Users,
   Shield,
 } from "lucide-react";
+import Image from "next/image";
 
 const contactInfo = [
   {
@@ -144,15 +145,29 @@ export default function ContactPage() {
       <Navbar />
       <main>
         {/* Hero Section */}
-        <section className="bg-gradient-to-r from-primary to-primary/80 p-6 flex justify-center text-white">
-          <div className="container">
+        <section className="relative h-[60vh] flex items-center justify-center bg-black text-white">
+          {/* Static Background Image */}
+          <div className="absolute inset-0">
+            <Image
+              src="/auth.jpg"
+              alt="Hero Background"
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-black/60" />
+          </div>
+
+          {/* Content */}
+          <div className="container relative z-10">
             <div className="mx-auto max-w-2xl text-center">
-              <h1 className="mb-4 text-4xl font-bold tracking-tight">
+              <h1 className="mb-4 text-4xl sm:text-5xl font-bold tracking-tight text-[#4DAF2B]">
                 Contact Us
               </h1>
-              <p className="text-lg opacity-90">
-                We're here to help you succeed on iSabiTV. Reach out with
-                questions, feedback, or partnership inquiries.
+              <p className="text-lg sm:text-xl opacity-90">
+                We're here to help you succeed on iSabiTV.
+                <br className="hidden sm:block" />
+                Reach out with questions, feedback, or partnership inquiries.
               </p>
             </div>
           </div>

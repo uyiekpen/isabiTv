@@ -163,7 +163,7 @@ export default function ContestPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-1 container py-10 px-6 max-w-7xl mx-auto">
+      <main className="flex-1 container py-10 px-6 max-w-7xl mx-auto pt-40">
         <h1 className="text-3xl font-bold mb-6">Contest Entries</h1>
         <p className="text-muted-foreground mb-8 max-w-2xl">
           Explore amazing entries submitted by creators for our ongoing video

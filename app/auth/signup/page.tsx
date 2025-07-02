@@ -26,7 +26,7 @@ export default function SignUpPage() {
     email: "",
     password: "",
     confirmPassword: "",
-    accountType: "viewer",
+    accountType: "creator", // force creator role
     agreeToTerms: false,
     agreeToGuidelines: false,
     subscribeNewsletter: true,
@@ -66,14 +66,10 @@ export default function SignUpPage() {
 
       toast({
         title: "Welcome to iSabiTV!",
-        description: "Your account has been created successfully.",
+        description: "Your creator account has been created successfully.",
       });
 
-      if (formData.accountType === "creator") {
-        router.push("/become-creator");
-      } else {
-        router.push("/");
-      }
+      router.push("/dashboard");
     } catch (error) {
       toast({
         title: "Error creating account",
@@ -97,9 +93,9 @@ export default function SignUpPage() {
     <div className="min-h-screen flex items-center justify-center bg-muted/50">
       <div className="w-full flex flex-col md:flex-row">
         {/* Left Side Image */}
-        <div className="relative w-full md:w-1/2 h-screen md:h-screen hidden md:block">
+        <div className="relative w-full md:w-1/2 h-screen hidden md:block">
           <Image
-            src="/auth.jpg" // Replace with your image path
+            src="/auth.jpg"
             alt="Sign Up"
             fill
             className="object-cover"
@@ -120,10 +116,10 @@ export default function SignUpPage() {
                 />
               </div>
               <CardTitle className="text-2xl text-center">
-                Create Your Account
+                Create Your Creator Account
               </CardTitle>
               <CardDescription className="text-center">
-                Join thousands of creators and viewers in our community
+                Join thousands of Afrocentric creators on iSabiTV
               </CardDescription>
             </CardHeader>
 
@@ -194,48 +190,6 @@ export default function SignUpPage() {
                       onChange={handleInputChange}
                       required
                     />
-                  </div>
-                </div>
-
-                {/* Account Type */}
-                <div className="space-y-3">
-                  <Label>Account Type</Label>
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    {["viewer", "creator"].map((type) => (
-                      <div
-                        key={type}
-                        onClick={() =>
-                          setFormData((prev) => ({
-                            ...prev,
-                            accountType: type,
-                          }))
-                        }
-                        className={`cursor-pointer rounded-lg border p-4 transition-colors ${
-                          formData.accountType === type
-                            ? "border-primary bg-primary/5"
-                            : "border-muted hover:border-primary/50"
-                        }`}
-                      >
-                        <div className="flex items-center space-x-2">
-                          <input
-                            type="radio"
-                            name="accountType"
-                            value={type}
-                            checked={formData.accountType === type}
-                            onChange={handleInputChange}
-                            className="text-primary"
-                          />
-                          <div>
-                            <p className="font-medium capitalize">{type}</p>
-                            <p className="text-xs text-muted-foreground">
-                              {type === "viewer"
-                                ? "Watch and engage with content"
-                                : "Upload and share videos"}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
                   </div>
                 </div>
 
@@ -314,15 +268,14 @@ export default function SignUpPage() {
                       htmlFor="subscribeNewsletter"
                       className="text-sm leading-relaxed"
                     >
-                      Subscribe to our newsletter for updates and community
-                      highlights
+                      Subscribe to our newsletter for creator tips and updates
                     </Label>
                   </div>
                 </div>
 
                 {/* Submit Button */}
                 <Button type="submit" className="w-full" disabled={isLoading}>
-                  {isLoading ? "Creating Account..." : "Create Account"}
+                  {isLoading ? "Creating Account..." : "Create Creator Account"}
                 </Button>
 
                 {/* Footer Links */}

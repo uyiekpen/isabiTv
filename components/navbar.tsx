@@ -52,8 +52,8 @@ export function Navbar() {
   );
 
   return (
-    <header className="absolute top-0 left-0 z-50 w-full p-6 md:p-12 bg-transparent flex justify-center items-center">
-      <div className="container flex h-14 items-center">
+    <header className="fixed top-0 left-0 z-50 w-full p-6 md:px-12 bg-transparent flex justify-center items-center">
+      <div className="container flex items-center">
         {/* Desktop Nav & Logo */}
         <div className="mr-4 hidden md:flex">
           <Link
@@ -62,7 +62,7 @@ export function Navbar() {
               isHome ? "text-white" : "text-black"
             }`}
           >
-            <Image src="/isabitv.svg" height={50} width={100} alt="logo.svg" />
+            <Image src="/isabitv.svg" height={50} width={100} alt="logo" />
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium">
             <NavLinks />
@@ -84,12 +84,7 @@ export function Navbar() {
           </SheetTrigger>
           <SheetContent side="left" className="pr-0">
             <Link href="/" className="flex items-center space-x-2">
-              <Image
-                src="/isabitv.svg"
-                height={50}
-                width={100}
-                alt="logo.svg"
-              />
+              <Image src="/isabitv.svg" height={50} width={100} alt="logo" />
             </Link>
             <div className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
               <div className="flex flex-col space-y-3">
@@ -108,12 +103,7 @@ export function Navbar() {
                 isHome ? "text-white" : "text-black"
               }`}
             >
-              <Image
-                src="/isabitv.svg"
-                height={50}
-                width={100}
-                alt="logo.svg"
-              />
+              <Image src="/isabitv.svg" height={50} width={100} alt="logo" />
             </Link>
           </div>
 
@@ -143,7 +133,12 @@ export function Navbar() {
                       </Avatar>
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent className="w-56" align="end" forceMount>
+                  <DropdownMenuContent
+                    className="w-56 z-50"
+                    align="start"
+                    sideOffset={8}
+                    forceMount
+                  >
                     <DropdownMenuItem asChild>
                       <Link href="/dashboard">
                         <User className="mr-2 h-4 w-4" />

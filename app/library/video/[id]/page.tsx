@@ -59,7 +59,7 @@ export default function VideoDetailPage() {
     return (
       <div className="min-h-screen flex flex-col">
         <Navbar />
-        <div className="flex-1 flex items-center justify-center">
+        <div className="flex-1 flex items-center justify-center ">
           <p className="text-muted-foreground">Video not found.</p>
         </div>
         <Footer />
@@ -70,7 +70,7 @@ export default function VideoDetailPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-1 container p-6 max-w-6xl mx-auto">
+      <main className="flex-1 container p-6 md:p-12 max-w-6xl mx-auto mt-40">
         {/* Video Player */}
         <h1 className="text-3xl font-bold mb-4">{video.title}</h1>
         <video controls className="w-full rounded-lg mb-4">
