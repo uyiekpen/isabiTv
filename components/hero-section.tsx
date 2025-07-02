@@ -42,7 +42,7 @@ export function HeroSection() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 3000);
+    }, 5000);
 
     return () => clearInterval(timer);
   }, []);
@@ -58,7 +58,7 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative h-[700px]  md:h-[600px] w-full overflow-hidden">
+    <section className="relative h-[700px]  md:h-[100vh] w-full overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -69,7 +69,7 @@ export function HeroSection() {
           priority
         />
         {/* Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/90 to-transparent" />
         <div className="absolute inset-0 bg-black/20" />
       </div>
 

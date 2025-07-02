@@ -27,29 +27,35 @@ const navigation = [
 export function Navbar() {
   const { user, logout } = useAuth();
   const pathname = usePathname();
+
   const isHome = pathname === "/";
+  const isContact = pathname === "/contact";
+  const isAbout = pathname === "/about";
+  const isLightBg = isHome || isContact || isAbout;
 
   const NavLinks = () => (
     <>
-      {navigation.map((item) => (
-        <Link
-          key={item.name}
-          href={item.href}
-          className={`text-sm font-medium transition-colors duration-300 ${
-            pathname === item.href
-              ? isHome
-                ? "text-white"
-                : "text-[#2DA105]"
-              : isHome
-              ? "text-white/80 hover:text-white"
-              : "text-muted-foreground hover:text-[#2DA105]"
-          }`}
-        >
-          {item.name}
-        </Link>
-      ))}
+      {navigation.map((item) => {
+        const isActive = pathname === item.href;
+
+        const linkClasses = [
+          "text-sm font-medium transition-colors duration-300",
+          isActive
+            ? "text-[#2DA105]" // Green when active
+            : isLightBg
+            ? "text-white/80 hover:text-white"
+            : "text-muted-foreground hover:text-[#2DA105]",
+        ].join(" ");
+
+        return (
+          <Link key={item.name} href={item.href} className={linkClasses}>
+            {item.name}
+          </Link>
+        );
+      })}
     </>
   );
+  
 
   return (
     <header className="fixed top-0 left-0 z-50 w-full p-6 md:px-12 bg-transparent flex justify-center items-center">
@@ -59,7 +65,7 @@ export function Navbar() {
           <Link
             href="/"
             className={`mr-6 flex items-center space-x-2 ${
-              isHome ? "text-white" : "text-black"
+              isLightBg ? "text-white" : "text-black"
             }`}
           >
             <Image src="/isabitv.svg" height={50} width={100} alt="logo" />
@@ -75,7 +81,7 @@ export function Navbar() {
             <Button
               variant="ghost"
               className={`mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden ${
-                isHome ? "text-white" : "text-black"
+                isLightBg ? "text-white" : "text-black"
               }`}
             >
               <Menu className="h-5 w-5" />
@@ -95,18 +101,19 @@ export function Navbar() {
         </Sheet>
 
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-          {/* Logo for mobile */}
+          {/* Mobile logo */}
           <div className="w-full flex-1 md:w-auto md:flex-none">
             <Link
               href="/"
               className={`flex items-center space-x-2 md:hidden ${
-                isHome ? "text-white" : "text-black"
+                isLightBg ? "text-white" : "text-black"
               }`}
             >
               <Image src="/isabitv.svg" height={50} width={100} alt="logo" />
             </Link>
           </div>
 
+          {/* Right Side Auth/Buttons */}
           <nav className="flex items-center space-x-2">
             {user ? (
               <>
@@ -167,7 +174,7 @@ export function Navbar() {
               </>
             ) : (
               <>
-                {/* Show only Sign Up on mobile */}
+                {/* Mobile Sign Up */}
                 <div className="flex items-center md:hidden">
                   <Button
                     size="lg"
@@ -178,13 +185,13 @@ export function Navbar() {
                   </Button>
                 </div>
 
-                {/* Show both on desktop */}
+                {/* Desktop Sign In/Up */}
                 <div className="hidden md:flex items-center space-x-2">
                   <Button
                     variant="ghost"
                     size="lg"
                     asChild
-                    className="border rounded-[50px]"
+                    className="border-3 rounded-[50px] border-[#228201] text-white"
                   >
                     <Link href="/auth/signin">Sign In</Link>
                   </Button>
