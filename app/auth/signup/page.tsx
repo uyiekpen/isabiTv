@@ -1,9 +1,6 @@
 "use client";
 
 import type React from "react";
-
-import { useAuth } from "@/components/auth-provider"; // Assuming useAuth is a custom hook
-import { useToast } from "@/hooks/use-toast"; // Assuming useToast is a custom hook
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -19,6 +16,8 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useAuth } from "@/components/auth-provider";
+import { useToast } from "@/hooks/use-toast";
 
 export default function SignUpPage() {
   const [formData, setFormData] = useState({
@@ -33,13 +32,14 @@ export default function SignUpPage() {
     subscribeNewsletter: true,
   });
   const [isLoading, setIsLoading] = useState(false);
-  const { signup } = useAuth();
+  const { signup, login } = useAuth();
   const { toast } = useToast();
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    // Validation
     if (formData.password !== formData.confirmPassword) {
       toast({
         title: "Password mismatch",
@@ -67,25 +67,55 @@ export default function SignUpPage() {
       return;
     }
 
+    if (!formData.firstName.trim() || !formData.lastName.trim()) {
+      toast({
+        title: "Name required",
+        description: "Please enter your first and last name.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsLoading(true);
 
     try {
-      await signup({
+      console.log("Submitting signup form...");
+
+      const result = await signup({
         email: formData.email,
         password: formData.password,
-        firstName: formData.firstName,
-        lastName: formData.lastName,
+        firstName: formData.firstName.trim(),
+        lastName: formData.lastName.trim(),
         role: formData.accountType as "creator",
         subscribeNewsletter: formData.subscribeNewsletter,
       });
 
-      toast({
-        title: "Welcome to iSabiTV!",
-        description: "Please check your email to verify your account.",
-      });
+      console.log("Signup result:", result);
 
-      router.push("/auth/verify-email");
+      if (result.success) {
+        toast({
+          title: "Welcome to iSabiTV!",
+          description: result.message || "Account created successfully!",
+        });
+
+        // Automatically sign in the user after successful signup
+        try {
+          await login(formData.email, formData.password);
+          router.push("/dashboard");
+        } catch (loginError) {
+          console.error("Auto-login failed:", loginError);
+          // If auto-login fails, redirect to signin page
+          router.push("/auth/signin");
+        }
+      } else {
+        toast({
+          title: "Signup failed",
+          description: result.message || "An error occurred during signup.",
+          variant: "destructive",
+        });
+      }
     } catch (error: any) {
+      console.error("Signup error:", error);
       toast({
         title: "Error creating account",
         description: error.message || "Please try again or contact support.",

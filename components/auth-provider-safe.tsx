@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { createContext, useContext, useEffect, useState } from "react"
-import { supabase, isSupabaseAvailable } from "@/lib/supabase"
+import { getSupabaseClient, isSupabaseAvailable } from "@/lib/supabase"
 import type { User as SupabaseUser, Session } from "@supabase/supabase-js"
 
 type User = {
@@ -36,17 +36,19 @@ type SignupData = {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
-export function AuthProvider({ children }: { children: React.ReactNode }) {
+export function AuthProviderSafe({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     // Don't initialize if Supabase client is not available
-    if (!isSupabaseAvailable() || !supabase) {
+    if (!isSupabaseAvailable()) {
       console.warn("Supabase client not initialized - missing environment variables")
       setIsLoading(false)
       return
     }
+
+    const supabase = getSupabaseClient()
 
     // Get initial session
     const getInitialSession = async () => {
@@ -87,7 +89,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [])
 
   const fetchUserProfile = async (supabaseUser: SupabaseUser) => {
-    if (!isSupabaseAvailable() || !supabase) return
+    if (!isSupabaseAvailable()) return
+
+    const supabase = getSupabaseClient()
 
     try {
       const { data: profile, error } = await supabase.from("profiles").select("*").eq("id", supabaseUser.id).single()
@@ -148,12 +152,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   const signup = async (userData: SignupData): Promise<{ success: boolean; message?: string }> => {
-    if (!isSupabaseAvailable() || !supabase) {
+    if (!isSupabaseAvailable()) {
       return {
         success: false,
         message: "Authentication service is not available. Please check your configuration.",
       }
     }
+
+    const supabase = getSupabaseClient()
 
     try {
       console.log("Starting signup process for:", userData.email)
@@ -196,11 +202,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         console.error("Profile creation error:", profileError)
       }
 
-      // Handle newsletter subscription
-      if (userData.subscribeNewsletter) {
-        console.log("User subscribed to newsletter")
-      }
-
       return {
         success: true,
         message: "Account created successfully! You can now sign in.",
@@ -215,9 +216,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   const login = async (email: string, password: string) => {
-    if (!isSupabaseAvailable() || !supabase) {
+    if (!isSupabaseAvailable()) {
       throw new Error("Authentication service is not available. Please check your configuration.")
     }
+
+    const supabase = getSupabaseClient()
 
     console.log("Attempting login for:", email)
 
@@ -229,15 +232,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       if (error) {
         console.error("Login error:", error)
-
-        // Handle email not confirmed error specifically
-        if (error.message.includes("Email not confirmed") || error.code === "email_not_confirmed") {
-          console.log("Attempting to resolve email confirmation issue...")
-          throw new Error(
-            "Account activation required. Please run the SQL fix script in your Supabase dashboard or contact support.",
-          )
-        }
-
         throw new Error(error.message)
       }
 
@@ -253,9 +247,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   const logout = async () => {
-    if (!isSupabaseAvailable() || !supabase) {
+    if (!isSupabaseAvailable()) {
       throw new Error("Authentication service is not available")
     }
+
+    const supabase = getSupabaseClient()
 
     const { error } = await supabase.auth.signOut()
     if (error) {

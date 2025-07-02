@@ -2,6 +2,7 @@
 
 import { useAuth } from "@/components/auth-provider";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import {
@@ -18,7 +19,7 @@ import { Play, Eye, Heart, Upload, Trophy, Edit, Trash2 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
-// Mock data
+// Mock data for user's videos
 const userVideos = [
   {
     id: "1",
@@ -61,20 +62,41 @@ const contestEntries = [
 ];
 
 export default function DashboardPage() {
-  const { user } = useAuth();
+  const { user, isLoading } = useAuth();
   const router = useRouter();
 
+  // Handle redirect in useEffect to avoid rendering issues
+  useEffect(() => {
+    if (
+      !isLoading &&
+      (!user || (user.role !== "creator" && user.role !== "admin"))
+    ) {
+      router.push("/auth/signin");
+    }
+  }, [user, isLoading, router]);
+
+  // Show loading state while checking authentication
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
+          <p>Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Don't render the dashboard if user is not authenticated or not a creator
   if (!user || (user.role !== "creator" && user.role !== "admin")) {
-    router.push("/auth/signin");
     return null;
   }
 
   return (
     <div className="min-h-screen">
       <Navbar />
-      <main className="container px-6 md:px-12 py-8 flex flex-col mt-20 space-y-8">
-        {/* Header */}
-        <div>
+      <main className="container py-8">
+        <div className="mb-8">
           <h1 className="mb-4 text-3xl font-bold">Creator Dashboard</h1>
           <p className="text-muted-foreground">
             Manage your videos, track performance, and view contest entries
@@ -82,8 +104,8 @@ export default function DashboardPage() {
         </div>
 
         {/* Stats Overview */}
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <Card className="animate-fade-in">
+        <div className="mb-8 grid gap-4 md:grid-cols-4">
+          <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
                 Total Videos
@@ -97,8 +119,7 @@ export default function DashboardPage() {
               </p>
             </CardContent>
           </Card>
-
-          <Card className="animate-fade-in">
+          <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Total Views</CardTitle>
               <Eye className="h-4 w-4 text-muted-foreground" />
@@ -110,8 +131,7 @@ export default function DashboardPage() {
               </p>
             </CardContent>
           </Card>
-
-          <Card className="animate-fade-in">
+          <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Total Likes</CardTitle>
               <Heart className="h-4 w-4 text-muted-foreground" />
@@ -123,8 +143,7 @@ export default function DashboardPage() {
               </p>
             </CardContent>
           </Card>
-
-          <Card className="animate-fade-in">
+          <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
                 Contest Entries
@@ -138,7 +157,6 @@ export default function DashboardPage() {
           </Card>
         </div>
 
-        {/* Tabs Section */}
         <Tabs defaultValue="videos" className="space-y-4">
           <div className="flex items-center justify-between">
             <TabsList>
@@ -153,9 +171,8 @@ export default function DashboardPage() {
             </Button>
           </div>
 
-          {/* My Videos Tab */}
           <TabsContent value="videos" className="space-y-4">
-            <Card className="animate-fade-in">
+            <Card>
               <CardHeader>
                 <CardTitle>My Videos</CardTitle>
                 <CardDescription>
@@ -167,7 +184,7 @@ export default function DashboardPage() {
                   {userVideos.map((video) => (
                     <div
                       key={video.id}
-                      className="flex items-center space-x-4 rounded-lg border p-4 transition-all duration-500 ease-in-out hover:shadow-md animate-fade-in"
+                      className="flex items-center space-x-4 rounded-lg border p-4"
                     >
                       <Image
                         src={video.thumbnail || "/placeholder.svg"}
@@ -214,9 +231,8 @@ export default function DashboardPage() {
             </Card>
           </TabsContent>
 
-          {/* Contest Entries Tab */}
           <TabsContent value="contests" className="space-y-4">
-            <Card className="animate-fade-in">
+            <Card>
               <CardHeader>
                 <CardTitle>Contest Entries</CardTitle>
                 <CardDescription>
@@ -228,7 +244,7 @@ export default function DashboardPage() {
                   {contestEntries.map((entry) => (
                     <div
                       key={entry.id}
-                      className="flex items-center space-x-4 rounded-lg border p-4 animate-fade-in"
+                      className="flex items-center space-x-4 rounded-lg border p-4"
                     >
                       <Image
                         src={entry.thumbnail || "/placeholder.svg"}
@@ -260,6 +276,7 @@ export default function DashboardPage() {
           </TabsContent>
         </Tabs>
       </main>
+      <Footer />
     </div>
   );
 }
