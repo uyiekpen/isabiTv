@@ -107,7 +107,7 @@ export function HeroSection() {
       </div>
 
       {/* Arrows */}
-      <Button
+      {/* <Button
         variant="ghost"
         size="icon"
         className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 h-12 w-12 z-10"
@@ -115,7 +115,7 @@ export function HeroSection() {
         aria-label="Previous Slide"
       >
         <ChevronLeft className="h-6 w-6" />
-      </Button>
+      </Button> */}
       <Button
         variant="ghost"
         size="icon"
