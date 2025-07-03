@@ -214,7 +214,7 @@ export function Navbar() {
                   <Button
                     size="lg"
                     asChild
-                    className="bg-[#228201] text-white rounded-[50px]"
+                    className="bg-gradient-to-br from-primary via-secondary to-accent text-white font-semibold shadow hover:brightness-110 transition rounded-[50px]"
                   >
                     <Link href="/auth/signup">Sign Up</Link>
                   </Button>

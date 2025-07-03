@@ -116,15 +116,7 @@ export function HeroSection() {
       >
         <ChevronLeft className="h-6 w-6" />
       </Button> */}
-      <Button
-        variant="ghost"
-        size="icon"
-        className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 h-12 w-12 z-10"
-        onClick={nextSlide}
-        aria-label="Next Slide"
-      >
-        <ChevronRight className="h-6 w-6" />
-      </Button>
+     
     </section>
   );
 }
