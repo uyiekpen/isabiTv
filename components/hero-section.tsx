@@ -42,7 +42,7 @@ export function HeroSection() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 5000);
+    }, 7000);
 
     return () => clearInterval(timer);
   }, []);
@@ -84,7 +84,7 @@ export function HeroSection() {
         key={currentSlide}
         className="relative z-10 flex flex-col justify-center items-center text-center text-white px-4 pt-28 h-full space-y-6 max-w-2xl mx-auto animate-fade-in"
       >
-        <h2 className="text-lg font-medium text-[#2DA105]">
+        <h2 className="text-lg font-medium text-white">
           {heroSlides[currentSlide].subtitle}
         </h2>
 

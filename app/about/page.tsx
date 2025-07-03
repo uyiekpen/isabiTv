@@ -101,8 +101,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-       
-
         {/* Impact Section */}
         <section className="bg-muted/50 py-16 px-6 sm:px-12 flex justify-center">
           <div className="container">
@@ -157,10 +155,14 @@ export default function AboutPage() {
                 building a stronger Black community through storytelling.
               </p>
               <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-                <Button size="lg" asChild>
+                <Button
+                  size="lg"
+                  asChild
+                  className="bg-gradient-to-br from-primary via-secondary to-accent text-white font-semibold shadow hover:brightness-110 transition rounded-[50px]"
+                >
                   <Link href="/auth/signup">Join iSabiTV</Link>
                 </Button>
-                <Button size="lg" variant="outline" asChild>
+                <Button size="lg" variant="outline" asChild className="rounded-[50px]">
                   <Link href="/library">Explore Content</Link>
                 </Button>
               </div>

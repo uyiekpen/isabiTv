@@ -7,36 +7,36 @@ import { VideoGrid } from "@/components/video-grid";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Search, Filter, Grid, List } from "lucide-react";
+import { Search, Filter } from "lucide-react";
 
 const categories = [
   "All",
-  "Movies",
-  "Contests",
-  "Nature",
-  "Cooking",
-  "Technology",
-  "Photography",
-  "Music",
+  "Afrobeats",
+  "Nollywood",
+  "Comedy",
+  "Fashion & Style",
+  "Food & Culture",
+  "Dance",
+  "Spoken Word",
+  "Documentary",
 ];
 
 export default function LibraryPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
-  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-20">
+    <div className="min-h-screen pt-20">
       <Navbar />
       <main className="container mx-auto px-4 py-8">
         {/* Header Section */}
         <div className="mb-8 text-center">
           <h1 className="mb-4 text-4xl font-bold tracking-tight text-black">
-            Video Library
+            Explore African Creativity
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Discover amazing content from creators around the world. Browse by
-            category or search for specific topics.
+            Discover original content from Black creators across the globe. From
+            music to storytelling — find your next inspiration.
           </p>
         </div>
 
@@ -46,35 +46,20 @@ export default function LibraryPage() {
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
-                placeholder="Search videos, creators, or topics..."
+                placeholder="Search creators, topics or genres..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-10 h-12 text-base"
               />
             </div>
             <div className="flex gap-2">
-              <Button variant="outline" className="h-12 bg-transparent text-black">
+              <Button
+                variant="outline"
+                className="h-12 bg-transparent text-black"
+              >
                 <Filter className="mr-2 h-4 w-4" />
                 Filters
               </Button>
-              {/* <div className="flex border rounded-lg overflow-hidden">
-                <Button
-                  variant={viewMode === "grid" ? "default" : "ghost"}
-                  size="sm"
-                  onClick={() => setViewMode("grid")}
-                  className="rounded-none h-12 px-3"
-                >
-                  <Grid className="h-4 w-4" />
-                </Button>
-                <Button
-                  variant={viewMode === "list" ? "default" : "ghost"}
-                  size="sm"
-                  onClick={() => setViewMode("list")}
-                  className="rounded-none h-12 px-3"
-                >
-                  <List className="h-4 w-4" />
-                </Button>
-              </div> */}
             </div>
           </div>
 
@@ -105,20 +90,20 @@ export default function LibraryPage() {
             {selectedCategory !== "All" && (
               <span>
                 Showing <span className="font-medium">{selectedCategory}</span>{" "}
-                videos
+                content
                 {searchQuery && (
-                  <span>
+                  <>
                     {" "}
-                    matching "<span className="font-medium">{searchQuery}</span>
-                    "
-                  </span>
+                    matching{" "}
+                    <span className="font-medium">"{searchQuery}"</span>
+                  </>
                 )}
               </span>
             )}
             {selectedCategory === "All" && searchQuery && (
               <span>
-                Search results for "
-                <span className="font-medium">{searchQuery}</span>"
+                Search results for{" "}
+                <span className="font-medium">"{searchQuery}"</span>
               </span>
             )}
             {selectedCategory === "All" && !searchQuery && (

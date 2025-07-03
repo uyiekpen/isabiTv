@@ -6,33 +6,33 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Upload, Trophy, Users, Star } from "lucide-react";
+import { Upload, Mic, Users, Globe } from "lucide-react"; // Changed icons for better cultural representation
 import Link from "next/link";
 
 const features = [
   {
     icon: Upload,
-    title: "Easy Upload",
+    title: "Seamless Video Upload",
     description:
-      "Upload your videos with our simple drag-and-drop interface. Support for all major video formats.",
+      "Easily share your skits, dance clips, spoken word, or short films. Just drag and drop — we handle the rest.",
   },
   {
-    icon: Trophy,
-    title: "Monthly Contests",
+    icon: Mic,
+    title: "Showcase African Stories",
     description:
-      "Participate in themed contests and win prizes. Show off your creativity and get recognized.",
+      "Tell authentic stories through music, film, and culture. IsabiTV is where Black creativity thrives.",
   },
   {
     icon: Users,
-    title: "Community",
+    title: "Community of Creators",
     description:
-      "Connect with fellow creators, collaborate on projects, and build lasting relationships.",
+      "Join a vibrant network of African creators — from Abuja to Accra, Nairobi to NYC. Collaborate and grow together.",
   },
   {
-    icon: Star,
-    title: "Get Discovered",
+    icon: Globe,
+    title: "Reach Global Audiences",
     description:
-      "Our algorithm helps viewers find your content. Build your audience and grow your following.",
+      "Our discovery tools help your voice travel. Get seen by fans across the diaspora and beyond.",
   },
 ];
 
@@ -42,11 +42,11 @@ export function LearnMore() {
       <div className="container">
         <div className="mb-12 text-center">
           <h2 className="mb-4 text-3xl font-bold tracking-tight">
-            Why Choose IsabiTv?
+            Why Create on IsabiTV?
           </h2>
           <p className="mx-auto max-w-2xl text-muted-foreground">
-            We provide everything you need to share your creativity with the
-            world
+            We empower Black creators to share, shine, and connect on a platform
+            built for you.
           </p>
         </div>
 
