@@ -61,13 +61,20 @@ export function HeroSection() {
     <section className="relative h-[700px] md:h-[100vh] w-full overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <Image
-          src={heroSlides[currentSlide].image}
-          alt={heroSlides[currentSlide].title}
-          fill
-          className="object-cover transition-opacity duration-500 ease-in-out"
-          priority
-        />
+        {heroSlides.map((slide, index) => (
+          <Image
+            key={slide.id}
+            src={slide.image}
+            alt={slide.title}
+            fill
+            priority
+            className={`
+        object-cover absolute transition-opacity duration-1000 ease-in-out
+        ${index === currentSlide ? "opacity-100" : "opacity-0"}
+      `}
+          />
+        ))}
+
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/90 to-transparent" />
         <div className="absolute inset-0 bg-black/20" />
       </div>
@@ -80,16 +87,20 @@ export function HeroSection() {
         <h2 className="text-lg font-medium text-[#2DA105]">
           {heroSlides[currentSlide].subtitle}
         </h2>
-        <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+
+        {/* Gradient Title Text */}
+        <h1 className="text-4xl md:text-5xl font-bold leading-tight bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
           {heroSlides[currentSlide].title}
         </h1>
+
         <p className="text-lg md:text-xl text-gray-200 leading-relaxed">
           {heroSlides[currentSlide].description}
         </p>
+
         <Button
           size="lg"
           asChild
-          className="bg-[#228201] hover:bg-[#1a6501] text-white text-lg px-8 py-3"
+          className="bg-gradient-to-br from-primary via-secondary to-accent text-white font-semibold shadow hover:brightness-110 transition rounded-[50px]"
         >
           <Link href="/library">{heroSlides[currentSlide].ctaText}</Link>
         </Button>
