@@ -26,7 +26,7 @@ const navigation = [
 ];
 
 export function Navbar() {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
   console.log("Current user in navbar:", user); // Add this line for debugging
 
   const pathname = usePathname();
@@ -69,20 +69,20 @@ export function Navbar() {
     </>
   );
 
-  const handleLogout = async () => {
-    try {
-      console.log("Starting logout process...");
-      await logout();
-      console.log("Logout completed successfully");
+  // const handleLogout = async () => {
+  //   try {
+  //     console.log("Starting logout process...");
+  //     await logout();
+  //     console.log("Logout completed successfully");
 
-      // Redirect to home page after logout
-      window.location.href = "/";
-    } catch (error) {
-      console.error("Logout failed:", error);
-      // Force redirect to home page anyway
-      window.location.href = "/";
-    }
-  };
+  //     // Redirect to home page after logout
+  //     window.location.href = "/";
+  //   } catch (error) {
+  //     console.error("Logout failed:", error);
+  //     // Force redirect to home page anyway
+  //     window.location.href = "/";
+  //   }
+  // };
 
   return (
     <header
@@ -171,7 +171,7 @@ export function Navbar() {
                           src={user.avatar || "/placeholder.svg"}
                           alt={user.name}
                         />
-                        <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
+                        <AvatarFallback></AvatarFallback>
                       </Avatar>
                     </Button>
                   </DropdownMenuTrigger>
@@ -200,7 +200,7 @@ export function Navbar() {
                       </DropdownMenuItem>
                     )}
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={handleLogout}>
+                    <DropdownMenuItem >
                       <LogOut className="mr-2 h-4 w-4" />
                       Log out
                     </DropdownMenuItem>
@@ -222,7 +222,7 @@ export function Navbar() {
 
                 {/* Desktop Sign In/Up */}
                 <div className="hidden md:flex items-center space-x-2">
-                  <Button
+                  {/* <Button
                     variant="ghost"
                     size="lg"
                     asChild
@@ -233,7 +233,7 @@ export function Navbar() {
                     }`}
                   >
                     <Link href="/auth/signin">Sign In</Link>
-                  </Button>
+                  </Button> */}
                   <Button
                     size="lg"
                     asChild

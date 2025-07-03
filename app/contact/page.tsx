@@ -161,7 +161,7 @@ export default function ContactPage() {
           {/* Content */}
           <div className="container relative z-10">
             <div className="mx-auto max-w-2xl text-center">
-              <h1 className="mb-4 text-4xl sm:text-5xl font-bold tracking-tight text-[#4DAF2B]">
+              <h1 className="mb-4 text-4xl sm:text-5xl font-bold tracking-tight text-[#fff]">
                 Contact Us
               </h1>
               <p className="text-lg sm:text-xl opacity-90">
