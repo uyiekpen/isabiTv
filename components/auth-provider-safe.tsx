@@ -5,42 +5,31 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { getSupabaseClient, isSupabaseAvailable } from "@/lib/supabase";
 import type { User as SupabaseUser, Session } from "@supabase/supabase-js";
 
-type User = {
+interface User {
   id: string;
   email: string;
-  firstName: string;
-  lastName: string;
-  role: "viewer" | "creator" | "admin";
-  isVerified: boolean;
+  name?: string;
+  firstName?: string;
+  lastName?: string;
+  role?: "viewer" | "creator" | "admin";
+  isVerified?: boolean;
   avatar?: string | null;
   bio?: string | null;
-  name: string;
-};
+}
 
-type AuthContextType = {
+interface AuthContextType {
   user: User | null;
-  login: (email: string, password: string) => Promise<void>;
-  signup: (
-    userData: SignupData
-  ) => Promise<{ success: boolean; message?: string }>;
-  logout: () => Promise<void>;
-  isLoading: boolean;
-};
+  isLoaded: boolean;
+  signIn: (email: string, password: string) => Promise<void>;
+  signUp: (userData: any) => Promise<{ success: boolean; message?: string }>;
+  signOut: () => Promise<void>;
+}
 
-type SignupData = {
-  email: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  role: "viewer" | "creator" | "admin";
-  subscribeNewsletter?: boolean;
-};
-
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const AuthContext = createContext<AuthContextType | null>(null);
 
 export function AuthProviderSafe({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     // Don't initialize if Supabase client is not available
@@ -48,7 +37,7 @@ export function AuthProviderSafe({ children }: { children: React.ReactNode }) {
       console.warn(
         "Supabase client not initialized - missing environment variables"
       );
-      setIsLoading(false);
+      setIsLoaded(true);
       return;
     }
 
@@ -69,7 +58,7 @@ export function AuthProviderSafe({ children }: { children: React.ReactNode }) {
       } catch (error) {
         console.error("Error in getInitialSession:", error);
       } finally {
-        setIsLoading(false);
+        setIsLoaded(true);
       }
     };
 
@@ -86,8 +75,9 @@ export function AuthProviderSafe({ children }: { children: React.ReactNode }) {
           await fetchUserProfile(session.user);
         } else {
           setUser(null);
+          localStorage.removeItem("user");
         }
-        setIsLoading(false);
+        setIsLoaded(false);
       }
     );
 
@@ -143,6 +133,14 @@ export function AuthProviderSafe({ children }: { children: React.ReactNode }) {
                 bio: newProfile.bio,
                 name: `${newProfile.first_name} ${newProfile.last_name}`.trim(),
               });
+              localStorage.setItem(
+                "user",
+                JSON.stringify({
+                  id: newProfile.id,
+                  email: newProfile.email,
+                  name: `${newProfile.first_name} ${newProfile.last_name}`.trim(),
+                })
+              );
             }
           }
         }
@@ -161,14 +159,22 @@ export function AuthProviderSafe({ children }: { children: React.ReactNode }) {
           bio: profile.bio,
           name: `${profile.first_name} ${profile.last_name}`.trim(),
         });
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            id: profile.id,
+            email: profile.email,
+            name: `${profile.first_name} ${profile.last_name}`.trim(),
+          })
+        );
       }
     } catch (error) {
       console.error("Error in fetchUserProfile:", error);
     }
   };
 
-  const signup = async (
-    userData: SignupData
+  const signUp = async (
+    userData: any
   ): Promise<{ success: boolean; message?: string }> => {
     if (!isSupabaseAvailable()) {
       return {
@@ -234,7 +240,7 @@ export function AuthProviderSafe({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const login = async (email: string, password: string) => {
+  const signIn = async (email: string, password: string) => {
     if (!isSupabaseAvailable()) {
       throw new Error(
         "Authentication service is not available. Please check your configuration."
@@ -261,16 +267,18 @@ export function AuthProviderSafe({ children }: { children: React.ReactNode }) {
       }
 
       console.log("Login successful for:", email);
+      await fetchUserProfile(data.user);
     } catch (error: any) {
       console.error("Login failed:", error);
       throw error;
     }
   };
 
-  const logout = async () => {
+  const signOut = async () => {
     if (!isSupabaseAvailable()) {
       // If Supabase is not available, just clear the local user state
       setUser(null);
+      localStorage.removeItem("user");
       return;
     }
 
@@ -286,11 +294,12 @@ export function AuthProviderSafe({ children }: { children: React.ReactNode }) {
     } finally {
       // Always clear the user state regardless of API response
       setUser(null);
+      localStorage.removeItem("user");
     }
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, signup, logout, isLoading }}>
+    <AuthContext.Provider value={{ user, isLoaded, signIn, signUp, signOut }}>
       {children}
     </AuthContext.Provider>
   );
@@ -298,8 +307,15 @@ export function AuthProviderSafe({ children }: { children: React.ReactNode }) {
 
 export function useAuth() {
   const context = useContext(AuthContext);
-  if (context === undefined) {
-    throw new Error("useAuth must be used within an AuthProvider");
+  if (!context) {
+    // Return safe defaults instead of throwing error during prerendering
+    return {
+      user: null,
+      isLoaded: false,
+      signIn: async () => {},
+      signUp: async () => {},
+      signOut: async () => {},
+    };
   }
   return context;
 }
