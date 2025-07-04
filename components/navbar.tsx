@@ -44,13 +44,17 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const NavLinks = () => (
+  const NavLinks = ({ mobile = false }: { mobile?: boolean }) => (
     <>
       {navigation.map((item) => {
         const isActive = pathname === item.href;
         const linkClasses = [
           "text-sm font-medium transition-colors duration-300",
-          isActive
+          mobile
+            ? isActive
+              ? "text-[#2DA105]"
+              : "text-gray-900 hover:text-[#2DA105]"
+            : isActive
             ? "text-[#2DA105]"
             : isLightBg && !scrolled
             ? "text-white/80 hover:text-white"
@@ -99,7 +103,7 @@ export function Navbar() {
                 <Image src="/isabitv.svg" height={50} width={100} alt="logo" />
               </Link>
               <div className="pl-6 flex flex-col space-y-4">
-                <NavLinks />
+                <NavLinks mobile />
                 {!user && (
                   <Button
                     size="sm"
@@ -190,7 +194,7 @@ export function Navbar() {
                 size="sm"
                 asChild
                 className="inline-flex items-center justify-center rounded-lg bg-[#228201] px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-[#1a6501] shadow-lg hover:shadow-xl"
-                >
+              >
                 <Link href="/auth/signup">Sign Up</Link>
               </Button>
             </div>
