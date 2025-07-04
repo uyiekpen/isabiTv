@@ -89,7 +89,7 @@ export function HeroSection() {
         </h2>
 
         {/* Gradient Title Text */}
-        <h1 className="text-4xl md:text-5xl font-bold leading-tight bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+        <h1 className="text-4xl md:text-5xl font-bold leading-tight  text-white">
           {heroSlides[currentSlide].title}
         </h1>
 

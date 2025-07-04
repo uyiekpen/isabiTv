@@ -26,9 +26,9 @@ export default function LibraryPage() {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen pt-20 ">
       <Navbar />
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 py-8 ">
         {/* Header Section */}
         <div className="mb-8 text-center">
           <h1 className="mb-4 text-4xl font-bold tracking-tight text-black">

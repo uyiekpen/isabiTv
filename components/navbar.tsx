@@ -104,7 +104,7 @@ export function Navbar() {
                   <Button
                     size="sm"
                     asChild
-                    className="bg-gradient-to-br from-primary via-secondary to-accent text-white font-semibold shadow hover:brightness-110 transition rounded-[50px] w-[120px]"
+                    className="inline-flex items-center justify-center rounded-lg bg-[#228201] px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-[#1a6501] shadow-lg hover:shadow-xl"
                   >
                     <Link href="/auth/signup">Sign Up</Link>
                   </Button>
@@ -189,8 +189,8 @@ export function Navbar() {
               <Button
                 size="sm"
                 asChild
-                className="bg-gradient-to-br from-primary via-secondary to-accent text-white font-semibold shadow hover:brightness-110 transition rounded-[50px] w-[120px]"
-              >
+                className="inline-flex items-center justify-center rounded-lg bg-[#228201] px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-[#1a6501] shadow-lg hover:shadow-xl"
+                >
                 <Link href="/auth/signup">Sign Up</Link>
               </Button>
             </div>

@@ -138,14 +138,14 @@ export function TrendingVideo() {
           ))}
         </div>
 
-        <div className="mt-12 text-center">
+        {/* <div className="mt-12 text-center">
           <Link
             href="/library"
             className="inline-flex items-center justify-center rounded-lg bg-[#228201] px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-[#1a6501] shadow-lg hover:shadow-xl"
           >
             View All Videos
           </Link>
-        </div>
+        </div> */}
       </div>
     </section>
   );
