@@ -32,7 +32,7 @@ export default function SignUpPage() {
     subscribeNewsletter: true,
   });
   const [isLoading, setIsLoading] = useState(false);
-  const { signup, login } = useAuth();
+  const { signUp, signIn } = useAuth();
   const { toast } = useToast();
   const router = useRouter();
 
@@ -79,9 +79,9 @@ export default function SignUpPage() {
     setIsLoading(true);
 
     try {
-      console.log("Submitting signup form...");
+      console.log("Submitting signUp form...");
 
-      const result = await signup({
+      const result = await signUp({
         email: formData.email,
         password: formData.password,
         firstName: formData.firstName.trim(),
@@ -100,7 +100,7 @@ export default function SignUpPage() {
 
         // Automatically sign in the user after successful signup
         try {
-          await login(formData.email, formData.password);
+          await signIn(formData.email, formData.password);
           router.push("/dashboard");
         } catch (loginError) {
           console.error("Auto-login failed:", loginError);

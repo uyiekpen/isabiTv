@@ -9,32 +9,33 @@ import Link from "next/link";
 const heroSlides = [
   {
     id: 1,
-    title: "Share Your Creative Vision",
-    subtitle: "Over 10,000 Videos and Creative Content",
+    title: "Unleash Your Creative Power",
+    subtitle: "The Home for Bold and Original Storytelling",
     description:
-      "Upload, share, and discover amazing videos from creators around the world. Join our community today!",
-    ctaText: "Browse Videos",
+      "From short films to cultural commentary, bring your vision to life and connect with an audience that values authenticity. Share your story with the world.",
+    ctaText: "Explore Creators",
     image: "/auth.jpg",
   },
   {
     id: 2,
-    title: "Join Our Monthly Contests",
-    subtitle: "Win Amazing Prizes Every Month",
+    title: "Shine in Monthly Spotlight Challenges",
+    subtitle: "Get Recognized, Win Rewards, Grow Your Reach",
     description:
-      "Compete with other creators and showcase your talent. Monthly contests with cash prizes and recognition.",
-    ctaText: "View Contests",
+      "Join vibrant competitions that celebrate creativity. Earn cash, visibility, and a spot in the spotlight—every single month.",
+    ctaText: "Join the Challenge",
     image: "/2.jpg",
   },
   {
     id: 3,
-    title: "Build Your Audience",
-    subtitle: "Connect with Viewers Worldwide",
+    title: "Grow Your Voice, Build Your Tribe",
+    subtitle: "Connect with Viewers Who Get You",
     description:
-      "Connect with viewers who love your content and grow your following. Build your personal brand today.",
+      "IsabiTV helps you grow a loyal audience, collaborate with fellow creators, and build a personal brand that makes impact.",
     ctaText: "Start Creating",
     image: "/3.jpg",
   },
 ];
+
 
 export function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);

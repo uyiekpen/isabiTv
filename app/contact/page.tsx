@@ -1,7 +1,6 @@
 "use client";
 
 import type React from "react";
-
 import { useState } from "react";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
@@ -103,7 +102,6 @@ export default function ContactPage() {
     setIsSubmitting(true);
 
     try {
-      // Simulate form submission
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       toast({
@@ -146,7 +144,6 @@ export default function ContactPage() {
       <main>
         {/* Hero Section */}
         <section className="relative h-[60vh] flex items-center justify-center bg-black text-white">
-          {/* Static Background Image */}
           <div className="absolute inset-0">
             <Image
               src="/auth.jpg"
@@ -158,30 +155,30 @@ export default function ContactPage() {
             <div className="absolute inset-0 bg-black/60" />
           </div>
 
-          {/* Content */}
-          <div className="container relative z-10">
-            <div className="mx-auto max-w-2xl text-center">
-              <h1 className="mb-4 text-4xl sm:text-5xl font-bold tracking-tight text-[#fff]">
-                Contact Us
-              </h1>
-              <p className="text-lg sm:text-xl opacity-90">
-                We're here to help you succeed on iSabiTV.
-                <br className="hidden sm:block" />
-                Reach out with questions, feedback, or partnership inquiries.
-              </p>
-            </div>
+          <div className="container relative z-10 px-4 text-center">
+            <h1 className="mb-4 text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white">
+              Contact Us
+            </h1>
+            <p className="text-base sm:text-lg opacity-90">
+              We're here to help you succeed on iSabiTV.
+              <br className="hidden sm:block" />
+              Reach out with questions, feedback, or partnership inquiries.
+            </p>
           </div>
         </section>
 
         {/* Contact Information */}
-        <section className="p-6">
+        <section className="p-2 md:p-12">
           <div className="container flex justify-center">
-            <div className="mb-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4 mt-8 ">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mt-8 w-full">
               {contactInfo.map((info, index) => (
-                <Card key={index} className="text-center w-full ">
+                <Card
+                  key={index}
+                  className="text-center w-full h-full flex flex-col justify-between rounded-xl transition-all duration-300 hover:shadow-lg"
+                >
                   <CardHeader>
-                    <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                      <info.icon className="h-6 w-6 text-primary" />
+                    <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[#DBF2D1]">
+                      <info.icon className="h-6 w-6 text-[#4DD90D]" />
                     </div>
                     <CardTitle className="text-lg">{info.title}</CardTitle>
                     <CardDescription>{info.description}</CardDescription>
@@ -192,7 +189,7 @@ export default function ContactPage() {
                     ) : (
                       <a
                         href={info.action}
-                        className="text-sm font-medium text-primary hover:underline"
+                        className="text-sm font-medium text-[#4DD90D] hover:underline"
                       >
                         {info.contact}
                       </a>
@@ -205,12 +202,12 @@ export default function ContactPage() {
         </section>
 
         {/* Contact Form and FAQ */}
-        <section className="bg-muted/50 p-6 flex justify-center">
+        <section className="bg-muted/50 p-2 md:p-12 flex justify-center">
           <div className="container">
-            <div className="grid gap-12 lg:grid-cols-2">
+            <div className="grid gap-8 md:grid-cols-2">
               {/* Contact Form */}
               <div>
-                <Card>
+                <Card className="rounded-xl">
                   <CardHeader>
                     <CardTitle>Send us a message</CardTitle>
                     <CardDescription>
@@ -290,7 +287,7 @@ export default function ContactPage() {
 
                       <Button
                         type="submit"
-                        className="w-full"
+                        className="w-full bg-[#299305] text-white hover:bg-[#207d04]"
                         disabled={isSubmitting}
                       >
                         {isSubmitting ? "Sending..." : "Send Message"}
@@ -313,19 +310,19 @@ export default function ContactPage() {
 
                 <div className="space-y-4">
                   {faqItems.map((item, index) => (
-                    <Card key={index}>
+                    <Card key={index} className="rounded-xl">
                       <CardHeader>
                         <div className="flex items-start space-x-3">
-                          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10">
-                            <item.icon className="h-4 w-4 text-primary" />
+                          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#DBF2D1]">
+                            <item.icon className="h-4 w-4 text-[#4DD90D]" />
                           </div>
-                          <CardTitle className="text-base">
+                          <CardTitle className="text-base leading-snug break-words">
                             {item.question}
                           </CardTitle>
                         </div>
                       </CardHeader>
                       <CardContent>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-muted-foreground leading-relaxed break-words">
                           {item.answer}
                         </p>
                       </CardContent>
@@ -333,7 +330,7 @@ export default function ContactPage() {
                   ))}
                 </div>
 
-                <Card className="mt-6">
+                <Card className="mt-6 rounded-xl">
                   <CardContent className="p-6">
                     <h3 className="mb-2 font-semibold">
                       Still have questions?
@@ -342,7 +339,10 @@ export default function ContactPage() {
                       Can't find what you're looking for? Our community team is
                       here to help.
                     </p>
-                    <Button variant="outline" className="w-full bg-transparent">
+                    <Button
+                      variant="outline"
+                      className="w-full bg-[#299305] text-white hover:bg-[#207d04]"
+                    >
                       <Mail className="mr-2 h-4 w-4" />
                       Email Support
                     </Button>

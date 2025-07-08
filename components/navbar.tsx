@@ -26,7 +26,7 @@ const navigation = [
 ];
 
 export function Navbar() {
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
   const pathname = usePathname();
 
   const isHome = pathname === "/";
@@ -135,7 +135,7 @@ export function Navbar() {
           {user ? (
             <>
               {(user.role === "creator" || user.role === "admin") && (
-                <Button asChild size="sm">
+                <Button asChild size="sm" className="inline-flex items-center justify-center rounded-lg bg-[#228201] px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-[#1a6501] shadow-lg hover:shadow-xl">
                   <Link href="/upload">
                     <Upload className="mr-2 h-4 w-4" />
                     Upload
@@ -181,7 +181,7 @@ export function Navbar() {
                     </DropdownMenuItem>
                   )}
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem>
+                  <DropdownMenuItem onClick={signOut}>
                     <LogOut className="mr-2 h-4 w-4" />
                     Log out
                   </DropdownMenuItem>

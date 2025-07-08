@@ -54,8 +54,8 @@ export function LearnMore() {
           {features.map((feature, index) => (
             <Card key={index} className="text-center">
               <CardHeader>
-                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                  <feature.icon className="h-6 w-6 text-primary" />
+                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[#DBF2D1]">
+                  <feature.icon className="h-6 w-6 text-[#4DD90D]" />
                 </div>
                 <CardTitle className="text-lg">{feature.title}</CardTitle>
               </CardHeader>
@@ -67,7 +67,11 @@ export function LearnMore() {
         </div>
 
         <div className="mt-12 text-center">
-          <Button size="lg" asChild>
+          <Button
+            size="lg"
+            asChild
+            className="bg-gradient-to-br from-primary via-secondary to-accent text-white font-semibold shadow hover:brightness-110 transition rounded-[50px]"
+          >
             <Link href="/about">Learn More About Us</Link>
           </Button>
         </div>

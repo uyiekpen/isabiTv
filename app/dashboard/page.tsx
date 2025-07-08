@@ -62,19 +62,19 @@ const contestEntries = [
 ];
 
 export default function DashboardPage() {
-  const { user, isLoading } = useAuth();
+  const { user, isLoaded } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
     if (
-      !isLoading &&
+      !isLoaded &&
       (!user || (user.role !== "creator" && user.role !== "admin"))
     ) {
       router.push("/auth/signin");
     }
-  }, [user, isLoading, router]);
+  }, [user, isLoaded, router]);
 
-  if (isLoading) {
+  if (isLoaded) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">

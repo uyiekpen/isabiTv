@@ -86,10 +86,10 @@ export default function AboutPage() {
           </div>
 
           <div className="relative z-10 px-4 text-center max-w-4xl">
-            <h1 className="mb-6 text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl leading-tight">
+            <h1 className="mb-6 text-2xl font-extrabold tracking-tight sm:text-5xl md:text-6xl leading-tight">
               What We Believe
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl font-medium opacity-90">
+            <p className="text-sm sm:text-xl md:text-2xl font-medium opacity-90">
               We built the platform for Afrocentric content. Let's discover
               what's possible when you have a dedicated environment designed to
               feature content,

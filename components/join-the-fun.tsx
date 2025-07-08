@@ -27,20 +27,20 @@ export function JoinTheFun() {
 
             <div className="mb-8 space-y-4">
               <div className="flex items-center space-x-3">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
-                  <Play className="h-4 w-4 text-primary" />
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#DBF2D1]">
+                  <Play className="h-4 w-4 text-[#4DD90D]" />
                 </div>
                 <span>Upload unlimited videos</span>
               </div>
               <div className="flex items-center space-x-3">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
-                  <Trophy className="h-4 w-4 text-primary" />
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#DBF2D1]">
+                  <Trophy className="h-4 w-4 text-[#4DD90D]" />
                 </div>
                 <span>Participate in monthly contests</span>
               </div>
               <div className="flex items-center space-x-3">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
-                  <Users className="h-4 w-4 text-primary" />
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#DBF2D1]">
+                  <Users className="h-4 w-4 text-[#4DD90D]" />
                 </div>
                 <span>Connect with other creators</span>
               </div>

@@ -24,7 +24,7 @@ export default function SignInPage() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const { login } = useAuth();
+  const { signIn } = useAuth();
   const { toast } = useToast();
   const router = useRouter();
 
@@ -34,7 +34,7 @@ export default function SignInPage() {
 
     try {
       console.log("Attempting to sign in with:", email);
-      await login(email, password);
+      await signIn(email, password);
 
       toast({
         title: "Welcome back!",
@@ -48,7 +48,7 @@ export default function SignInPage() {
       let errorMessage = "Please check your email and password.";
 
       // Handle specific Supabase error messages (removed email verification checks)
-      if (error.message.includes("Invalid login credentials")) {
+      if (error.message.includes("Invalid signIn credentials")) {
         errorMessage =
           "Invalid email or password. Please check your credentials and try again.";
       } else if (error.message.includes("Too many requests")) {

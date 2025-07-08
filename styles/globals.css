@@ -5,24 +5,27 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 215 25% 27%;
+    --foreground: 0 0% 0%;
     --card: 0 0% 100%;
-    --card-foreground: 215 25% 27%;
+    --card-foreground: 0 0% 0%;
     --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 27%;
-    --primary: 258 90% 66%;
+    --popover-foreground: 0 0% 0%;
+
+    /* IsabiTV Color Palette */
+    --primary: 96 100% 40%;          /* Primary Green (#66CC00) */
     --primary-foreground: 0 0% 100%;
-    --secondary: 160 84% 39%;
+    --secondary: 120 100% 30%;       /* Secondary Green (#339900) */
     --secondary-foreground: 0 0% 100%;
+    --accent: 90 100% 60%;           /* Accent Green (#99FF33) */
+    --accent-foreground: 0 0% 0%;
+
     --muted: 215 20% 95%;
     --muted-foreground: 215 13% 45%;
-    --accent: 0 84% 60%;
-    --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
     --border: 215 20% 90%;
     --input: 215 20% 90%;
-    --ring: 258 90% 66%;
+    --ring: 96 100% 40%;
     --radius: 0.5rem;
   }
 
@@ -33,19 +36,21 @@
     --card-foreground: 0 0% 95%;
     --popover: 215 28% 17%;
     --popover-foreground: 0 0% 95%;
-    --primary: 258 90% 66%;
+
+    --primary: 96 100% 40%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 160 84% 39%;
+    --secondary: 120 100% 30%;
     --secondary-foreground: 0 0% 100%;
+    --accent: 90 100% 60%;
+    --accent-foreground: 0 0% 0%;
+
     --muted: 215 25% 27%;
     --muted-foreground: 215 13% 65%;
-    --accent: 0 84% 60%;
-    --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
     --border: 215 25% 27%;
     --input: 215 25% 27%;
-    --ring: 258 90% 66%;
+    --ring: 96 100% 40%;
   }
 }
 
@@ -63,6 +68,16 @@
   background: linear-gradient(135deg, #8b5cf6 0%, #10b981 50%, #ef4444 100%);
 }
 
+/* Glass effect utility */
+.glass {
+  @apply backdrop-blur-lg bg-white/10 border border-white/20 rounded-xl;
+}
+
+/* Soft shadow utility */
+.soft-shadow {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
 /* Custom scrollbar styling */
 ::-webkit-scrollbar {
   width: 8px;
@@ -78,4 +93,16 @@
 
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-primary/80;
+}
+
+.dark ::-webkit-scrollbar-track {
+  @apply bg-muted;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  @apply bg-secondary rounded-full;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  @apply bg-secondary/80;
 }
