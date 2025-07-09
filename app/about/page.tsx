@@ -251,7 +251,7 @@ export default function AboutPage() {
         </section>
 
         {/* Impact Statistics */}
-        <section className="py-20 bg-gradient-to-r from-amber-600 via-red-600 to-green-600 text-white">
+        {/* <section className="py-20 bg-gradient-to-r from-amber-600 via-red-600 to-green-600 text-white">
           <div className="container mx-auto px-6">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold mb-4">Our Growing Impact</h2>
@@ -272,52 +272,10 @@ export default function AboutPage() {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Call to Action */}
-        <section className="py-20 bg-slate-900 text-white">
-          <div className="container mx-auto px-6">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-4xl font-bold mb-6">
-                Ready to Add Your Voice to the Chorus?
-              </h2>
-              <p className="text-xl mb-8 opacity-90 leading-relaxed">
-                Whether you're a storyteller, educator, artist, entrepreneur, or
-                simply someone with a story to share - iSabiTV is your platform.
-                Join thousands of creators who are reshaping how Black stories
-                are told and celebrated.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                <Button
-                  size="lg"
-                  className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 text-lg"
-                  asChild
-                >
-                  <Link href="/auth/signup">Start Your Journey</Link>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-amber-300 text-amber-300 hover:bg-amber-300 hover:text-black px-8 py-4 text-lg bg-transparent"
-                  asChild
-                >
-                  <Link href="/library">Discover Stories</Link>
-                </Button>
-              </div>
-
-              <div className="mt-12 pt-8 border-t border-slate-700">
-                <p className="text-lg font-medium text-amber-300 mb-2">
-                  "Sankofa" - Look back to move forward
-                </p>
-                <p className="text-sm opacity-75">
-                  We honor our past, celebrate our present, and build our future
-                  - together.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+      
       </main>
       <Footer />
     </div>
