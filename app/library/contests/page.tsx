@@ -6,7 +6,7 @@ import { Footer } from "@/components/footer";
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import { Eye, Heart, Clock, Play, Star } from "lucide-react";
+import { Clock, Play, Star } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 interface ContestVideo {
@@ -105,7 +105,7 @@ export default function ContestPage() {
               className="group overflow-hidden border border-border bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
             >
               <CardContent className="p-0">
-                <Link href={`/library/video/${video.id}`}>
+                <Link href={`/library/contests-details/${video.id}`}>
                   <div className="relative aspect-video overflow-hidden">
                     <Image
                       src={video.thumbnail || "/placeholder.svg"}
@@ -134,7 +134,7 @@ export default function ContestPage() {
                 </Link>
 
                 <div className="p-4">
-                  <Link href={`/library/video/${video.id}`}>
+                  <Link href={`/library/contest-details/${video.id}`}>
                     <h3 className="font-semibold text-base line-clamp-2 hover:text-[#2DA105] transition-colors mb-2">
                       {video.title}
                     </h3>
@@ -167,7 +167,7 @@ export default function ContestPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-1 container py-10 px-6 max-w-7xl mx-auto pt-40">
+      <main className="flex-1 container p-6 md:p-12 mt-20">
         <h1 className="text-3xl font-bold mb-6">Contest Entries</h1>
         <p className="text-muted-foreground mb-8 max-w-2xl">
           Explore amazing entries submitted by creators for our ongoing video

@@ -101,7 +101,7 @@ export function HeroSection() {
         <Button
           size="lg"
           asChild
-          className="bg-gradient-to-br from-primary via-secondary to-accent text-white font-semibold shadow hover:brightness-110 transition rounded-[50px]"
+          className="bg-[#1FA018] transition rounded-[50px]"
         >
           <Link href="/library">{heroSlides[currentSlide].ctaText}</Link>
         </Button>
@@ -117,7 +117,6 @@ export function HeroSection() {
       >
         <ChevronLeft className="h-6 w-6" />
       </Button> */}
-     
     </section>
   );
 }

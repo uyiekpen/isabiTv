@@ -67,14 +67,15 @@ export default function DashboardPage() {
 
   useEffect(() => {
     if (
-      !isLoaded &&
+      isLoaded &&
       (!user || (user.role !== "creator" && user.role !== "admin"))
     ) {
       router.push("/auth/signin");
     }
   }, [user, isLoaded, router]);
 
-  if (isLoaded) {
+  // Show loading while auth state is being determined
+  if (!isLoaded) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
@@ -85,6 +86,7 @@ export default function DashboardPage() {
     );
   }
 
+  // If user is not authorized, don't render anything (redirect will happen)
   if (!user || (user.role !== "creator" && user.role !== "admin")) {
     return null;
   }
@@ -244,7 +246,7 @@ export default function DashboardPage() {
                     className="flex flex-col md:flex-row items-center gap-4 rounded-lg border p-4"
                   >
                     <Image
-                      src={entry.thumbnail}
+                      src={entry.thumbnail || "/placeholder.svg"}
                       alt={entry.title}
                       width={120}
                       height={80}

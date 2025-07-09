@@ -71,7 +71,7 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 z-50 w-full p-4 md:px-12 flex justify-center items-center transition-all duration-300 ${
+      className={`fixed top-0 left-0 z-50 w-full p-6 md:px-12 flex justify-center items-center transition-all duration-300 ${
         scrolled
           ? "bg-white shadow-md"
           : isLightBg

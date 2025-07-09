@@ -4,67 +4,98 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
   Heart,
-  Users,
   Shield,
   Globe,
-  Star,
   BookOpen,
   Lightbulb,
-  Award,
+  Crown,
+  Mic,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
-const beliefs = [
+const coreValues = [
   {
-    icon: Heart,
-    title: "A Dedicated Safe Space",
+    icon: Mic,
+    title: "Griot Tradition",
     description:
-      "We provide a dedicated, safe space for valuable stories & content that elevates Black society, free from vulgar or overly sexualized content.",
-  },
-  {
-    icon: Users,
-    title: "Community Empowerment",
-    description:
-      "Our platform is built FROM our Black community and FOR our Black community, fostering connection and cultural exchange worldwide.",
+      "We carry forward the ancient African tradition of griots - master storytellers who preserve history, culture, and wisdom through powerful narratives that educate and inspire generations.",
   },
   {
     icon: Shield,
-    title: "High-Quality Standards",
+    title: "Cultural Preservation",
     description:
-      "We maintain strict content standards to ensure inspirational and educational stories can be more impactful in a respectful environment.",
+      "iSabiTV serves as a digital archive, preserving our stories, traditions, and wisdom for future generations while celebrating our rich heritage across the diaspora.",
+  },
+  {
+    icon: Crown,
+    title: "Black Excellence",
+    description:
+      "We showcase the brilliance, creativity, and achievements of Black people worldwide, creating a space where excellence is celebrated and mediocrity is not tolerated.",
   },
   {
     icon: Globe,
-    title: "Global Black Stories",
+    title: "Diaspora Unity",
     description:
-      "We connect Black creators and audiences worldwide, celebrating the diversity and richness of Black experiences across cultures.",
+      "From Africa to the Americas, from Europe to Asia, we connect Black communities globally, fostering understanding and solidarity across borders and cultures.",
+  },
+];
+
+const brandStory = [
+  {
+    icon: BookOpen,
+    title: "Our Origin Story",
+    subtitle: "Born from Necessity, Built with Purpose",
+    description:
+      "iSabiTV was born from the recognition that mainstream platforms often fail to adequately represent the depth, beauty, and diversity of Black experiences. We saw our stories being told through others' lenses, our achievements minimized, and our culture commodified. So we decided to create our own space - a digital homeland where Black voices aren't just heard, they're celebrated and amplified.",
+    image: "/auth.jpg",
+  },
+  {
+    icon: Globe,
+    title: "Pan-African Vision",
+    subtitle: "Connecting the Diaspora Through Stories",
+    description:
+      "From Lagos to London, from Accra to Atlanta, from Kingston to Kinshasa - iSabiTV bridges the African diaspora through shared narratives. We celebrate the unique experiences of Black communities worldwide while highlighting our common threads of resilience, creativity, and excellence. Our platform serves as a digital bridge connecting our global family.",
+    image: "/img1.jpg",
+  },
+  {
+    icon: Lightbulb,
+    title: "Innovation & Heritage",
+    subtitle: "Where Ancient Wisdom Meets Modern Technology",
+    description:
+      "We blend cutting-edge technology with ancestral wisdom, creating a platform that honors our past while building our future. iSabiTV showcases Black innovation in tech, science, arts, and entrepreneurship, proving that we are not just consumers of technology but creators and pioneers shaping the digital landscape.",
+    image: "/img2.jpg",
+  },
+  {
+    icon: Heart,
+    title: "Community First",
+    subtitle: "By Us, For Us, With Love",
+    description:
+      "Every feature, every policy, every decision at iSabiTV is made with our community's wellbeing at heart. We're not just a platform; we're a movement. We're building more than a video sharing site - we're creating a digital sanctuary where Black excellence is the norm, not the exception.",
+    image: "/img3.jpg",
   },
 ];
 
 const impact = [
   {
-    icon: Award,
-    title: "About Us",
-    description:
-      "Our platform is dedicated to documenting, archiving, and preserving black stories. We believe that every voice matters and we strive to empower the black community by providing a space to share their experiences. Whether you're an individual, a small business, or a large organization, we welcome you to join us on this journey of discovery and growth. Our team is committed to providing the best experience for our users. We value transparency, authenticity, and inclusivity, and we aim to reflect these values in everything we do.",
-    image: "/auth.jpg",
+    number: "50K+",
+    label: "Stories Shared",
+    description: "Authentic narratives from across the diaspora",
   },
   {
-    icon: Lightbulb,
-    title: "OUR VISION",
-    subtitle:
-      "A dedicated, safe space for valuable stories & content that elevates Black society",
-    description:
-      "A fundamental design choice of the iSabiTV platform is not to allow vulgar or sensual content. Too much of the available video content online is oversexualized, and we see this as a barrier to using video media to empower the next generation. Inspirational and educational stories can be more impactful when not overly sexualized, and iSabiTV will be the place for such high-quality content.",
-    image: "/auth.jpg",
+    number: "25+",
+    label: "Countries Represented",
+    description: "Global Black voices united on one platform",
   },
   {
-    icon: Star,
-    title: "Become A Creator",
-    description:
-      "We are building the largest online repository of stories showcasing Black culture, education and inspirational content. We work with produced and user-generated content creators. This includes Radio stations, TV stations, Independent creators, Journalists, and any enthusiasts that has a story or knowledge to tell. Upload and share Afrocentric stories and express yourself to the world with you voice.",
-    image: "/auth.jpg",
+    number: "100K+",
+    label: "Community Members",
+    description: "Growing family of creators and viewers",
+  },
+  {
+    number: "1M+",
+    label: "Hours Watched",
+    description: "Educational and inspirational content consumed",
   },
 ];
 
@@ -73,94 +104,216 @@ export default function AboutPage() {
     <div className="min-h-screen">
       <Navbar />
       <main className="flex flex-col justify-center">
-        {/* Hero Section with background image */}
-        <section className="relative h-[80vh] flex items-center justify-center bg-black text-white">
+        {/* Hero Section */}
+        <section className="relative h-[90vh] flex items-center justify-center bg-gradient-to-br from-amber-900 via-red-900 to-green-900 text-white overflow-hidden">
           <div className="absolute inset-0">
             <Image
-              src="/auth.jpg" // Replace with your preferred hero background image
-              alt="Hero Background"
+              src="/auth.jpg"
+              alt="African Heritage"
               fill
-              className="object-cover"
+              className="object-cover opacity-30"
             />
-            <div className="absolute inset-0 bg-black/60" />
+            <div className="absolute inset-0 bg-gradient-to-br from-amber-900/80 via-red-900/80 to-green-900/80" />
           </div>
 
-          <div className="relative z-10 px-4 text-center max-w-4xl">
-            <h1 className="mb-6 text-2xl font-extrabold tracking-tight sm:text-5xl md:text-6xl leading-tight">
-              What We Believe
-            </h1>
-            <p className="text-sm sm:text-xl md:text-2xl font-medium opacity-90">
-              We built the platform for Afrocentric content. Let's discover
-              what's possible when you have a dedicated environment designed to
-              feature content,
+          <div className="relative z-10 px-4 text-center max-w-5xl">
+            <div className="mb-6">
+              <h1 className="mb-4 text-3xl font-bold tracking-tight sm:text-6xl md:text-7xl leading-tight">
+                <span className="text-amber-300">iSabi</span>
+                <span className="text-white">TV</span>
+              </h1>
+              <p className="text-xl sm:text-2xl md:text-3xl font-medium text-amber-200 mb-6">
+                Where Black Stories Live, Breathe, and Thrive
+              </p>
+            </div>
+
+            <p className="text-lg sm:text-xl md:text-2xl font-medium opacity-90 max-w-4xl mx-auto leading-relaxed">
+              We are the digital griot of our time, preserving and sharing the
+              rich tapestry of Black experiences across the globe.
               <br className="hidden md:inline" />
-              <span className="font-semibold text-white">
-                FROM our Black community and FOR our Black community.
+              <span className="font-semibold text-amber-300">
+                From our ancestors' wisdom to tomorrow's innovations - every
+                story matters.
               </span>
             </p>
+
+            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                size="lg"
+                className="bg-amber-600 hover:bg-amber-700 text-white"
+                asChild
+              >
+                <Link href="/auth/signup">Join Our Community</Link>
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-amber-300 text-amber-300 hover:bg-amber-300 hover:text-black bg-transparent"
+                asChild
+              >
+                <Link href="/library">Explore Stories</Link>
+              </Button>
+            </div>
           </div>
         </section>
 
-        {/* Impact Section */}
-        <section className="bg-muted/50 py-16 px-6 sm:px-12 flex justify-center">
-          <div className="container">
-            <div className="mx-auto max-w-6xl">
-              <div className="space-y-16">
-                {" "}
-                {/* Increased spacing between items */}
-                {impact.map((item, index) => (
-                  <div key={index} className="overflow-hidden">
-                    <div
-                      className={`flex flex-col gap-6 ${
-                        index % 2 === 0 ? "sm:flex-row" : "sm:flex-row-reverse"
-                      }`}
-                    >
-                      {/* Larger Image Section */}
-                      <div className="relative w-full sm:w-[55%] h-80 sm:h-[400px] rounded-lg overflow-hidden">
-                        <Image
-                          src={item.image}
-                          alt={item.title}
-                          fill
-                          className="object-cover rounded-lg"
-                        />
-                      </div>
+        {/* Core Values Section */}
+        <section className="py-20 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                Our Foundation
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                Built on the pillars of African storytelling tradition and
+                modern digital innovation
+              </p>
+            </div>
 
-                      {/* Text Section */}
-                      <div className="flex w-full sm:w-[45%] flex-col justify-center p-6">
-                        <h3 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white">
-                          {item.title}
-                        </h3>
-                        <p className="text-lg text-muted-foreground dark:text-gray-300">
-                          {item.description}
-                        </p>
-                      </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {coreValues.map((value, index) => (
+                <Card
+                  key={index}
+                  className="p-6 text-center hover:shadow-lg transition-shadow border-l-4 border-l-amber-500"
+                >
+                  <div className="mb-4 flex justify-center">
+                    <div className="p-3 bg-amber-100 dark:bg-amber-900 rounded-full">
+                      <value.icon className="h-8 w-8 text-amber-600 dark:text-amber-400" />
                     </div>
                   </div>
-                ))}
-              </div>
+                  <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
+                    {value.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {value.description}
+                  </p>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Brand Story Section */}
+        <section className="py-20 bg-white dark:bg-slate-800">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                The iSabiTV Journey
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                Every great movement begins with a story. Here's ours.
+              </p>
+            </div>
+
+            <div className="space-y-20">
+              {brandStory.map((story, index) => (
+                <div key={index} className="overflow-hidden">
+                  <div
+                    className={`flex flex-col gap-8 ${
+                      index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+                    }`}
+                  >
+                    {/* Image Section */}
+                    <div className="relative w-full lg:w-1/2 h-80 lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl">
+                      <Image
+                        src={story.image || "/placeholder.svg"}
+                        alt={story.title}
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                    </div>
+
+                    {/* Content Section */}
+                    <div className="flex w-full lg:w-1/2 flex-col justify-center p-8">
+                      <div className="mb-6 flex items-center gap-4">
+                        <div className="p-3 bg-amber-100 dark:bg-amber-900 rounded-full">
+                          <story.icon className="h-8 w-8 text-amber-600 dark:text-amber-400" />
+                        </div>
+                        <div>
+                          <h3 className="text-3xl font-bold text-gray-900 dark:text-white">
+                            {story.title}
+                          </h3>
+                          <p className="text-lg text-amber-600 dark:text-amber-400 font-medium">
+                            {story.subtitle}
+                          </p>
+                        </div>
+                      </div>
+                      <p className="text-lg text-muted-foreground dark:text-gray-300 leading-relaxed">
+                        {story.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Impact Statistics */}
+        <section className="py-20 bg-gradient-to-r from-amber-600 via-red-600 to-green-600 text-white">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold mb-4">Our Growing Impact</h2>
+              <p className="text-xl opacity-90 max-w-3xl mx-auto">
+                Together, we're building something beautiful and powerful
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {impact.map((stat, index) => (
+                <div key={index} className="text-center">
+                  <div className="text-5xl font-bold mb-2 text-amber-200">
+                    {stat.number}
+                  </div>
+                  <div className="text-xl font-semibold mb-2">{stat.label}</div>
+                  <div className="text-sm opacity-80">{stat.description}</div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
         {/* Call to Action */}
-        <section className="py-16 bg-background dark:bg-gray-950">
-          <div className="container">
-            <div className="mx-auto max-w-2xl text-center">
-              <h2 className="mb-4 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
-                Join Our Community
+        <section className="py-20 bg-slate-900 text-white">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="text-4xl font-bold mb-6">
+                Ready to Add Your Voice to the Chorus?
               </h2>
-              <p className="mb-8 text-lg text-muted-foreground dark:text-gray-400">
-                Be part of a movement that celebrates, educates, and empowers.
-                Whether you're a creator or viewer, your voice matters in
-                building a stronger Black community through storytelling.
+              <p className="text-xl mb-8 opacity-90 leading-relaxed">
+                Whether you're a storyteller, educator, artist, entrepreneur, or
+                simply someone with a story to share - iSabiTV is your platform.
+                Join thousands of creators who are reshaping how Black stories
+                are told and celebrated.
               </p>
-              <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-                <Button size="lg" asChild>
-                  <Link href="/auth/signup">Join iSabiTV</Link>
+
+              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <Button
+                  size="lg"
+                  className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 text-lg"
+                  asChild
+                >
+                  <Link href="/auth/signup">Start Your Journey</Link>
                 </Button>
-                <Button size="lg" variant="outline" asChild>
-                  <Link href="/library">Explore Content</Link>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-amber-300 text-amber-300 hover:bg-amber-300 hover:text-black px-8 py-4 text-lg bg-transparent"
+                  asChild
+                >
+                  <Link href="/library">Discover Stories</Link>
                 </Button>
+              </div>
+
+              <div className="mt-12 pt-8 border-t border-slate-700">
+                <p className="text-lg font-medium text-amber-300 mb-2">
+                  "Sankofa" - Look back to move forward
+                </p>
+                <p className="text-sm opacity-75">
+                  We honor our past, celebrate our present, and build our future
+                  - together.
+                </p>
               </div>
             </div>
           </div>
