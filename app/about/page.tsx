@@ -104,8 +104,8 @@ export default function AboutPage() {
     <div className="min-h-screen">
       <Navbar />
       <main className="flex flex-col justify-center">
-        {/* Hero Section */}
-        <section className="relative h-[90vh] flex items-center justify-center bg-gradient-to-br from-amber-900 via-red-900 to-green-900 text-white overflow-hidden">
+        {/* Hero Section - Optimized for Mobile */}
+        <section className="relative min-h-[85vh] sm:min-h-[90vh] lg:h-[95vh] flex items-center justify-center bg-gradient-to-br from-green-900 via-emerald-900 to-teal-900 text-white overflow-hidden">
           <div className="absolute inset-0">
             <Image
               src="/auth.jpg"
@@ -113,34 +113,36 @@ export default function AboutPage() {
               fill
               className="object-cover opacity-30"
             />
-            <div className="absolute inset-0 bg-gradient-to-br from-amber-900/80 via-red-900/80 to-green-900/80" />
+            <div className="absolute inset-0 bg-gradient-to-br from-green-900/80 via-emerald-900/80 to-teal-900/80" />
           </div>
 
-          <div className="relative z-10 px-4 text-center max-w-5xl">
-            <div className="mb-6">
-              <h1 className="mb-4 text-3xl font-bold tracking-tight sm:text-6xl md:text-7xl leading-tight">
-                <span className="text-amber-300">iSabi</span>
+          <div className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-5xl mx-auto py-8 sm:py-12">
+            <div className="mb-6 sm:mb-8 lg:mb-10">
+              <h1 className="mb-3 sm:mb-4 text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] sm:leading-tight">
+                <span className="text-green-300">iSabi</span>
                 <span className="text-white">TV</span>
               </h1>
-              <p className="text-xl sm:text-2xl md:text-3xl font-medium text-amber-200 mb-6">
+              <p className="text-base sm:text-xl md:text-2xl lg:text-3xl font-medium text-green-200 mb-4 sm:mb-6 px-2">
                 Where Black Stories Live, Breathe, and Thrive
               </p>
             </div>
 
-            <p className="text-lg sm:text-xl md:text-2xl font-medium opacity-90 max-w-4xl mx-auto leading-relaxed">
-              We are the digital griot of our time, preserving and sharing the
-              rich tapestry of Black experiences across the globe.
-              <br className="hidden md:inline" />
-              <span className="font-semibold text-amber-300">
-                From our ancestors' wisdom to tomorrow's innovations - every
-                story matters.
-              </span>
-            </p>
+            <div className="mb-6 sm:mb-8 lg:mb-10">
+              <p className="text-sm sm:text-lg md:text-xl lg:text-2xl font-medium opacity-90 max-w-4xl mx-auto leading-relaxed px-2">
+                We are the digital griot of our time, preserving and sharing the
+                rich tapestry of Black experiences across the globe.
+                <br className="hidden sm:inline" />
+                <span className="block sm:inline font-semibold text-green-300 mt-2 sm:mt-0">
+                  From our ancestors' wisdom to tomorrow's innovations - every
+                  story matters.
+                </span>
+              </p>
+            </div>
 
-            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center max-w-md sm:max-w-none mx-auto">
               <Button
                 size="lg"
-                className="bg-amber-600 hover:bg-amber-700 text-white"
+                className="bg-green-600 hover:bg-green-700 text-white w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold"
                 asChild
               >
                 <Link href="/auth/signup">Join Our Community</Link>
@@ -148,7 +150,7 @@ export default function AboutPage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-amber-300 text-amber-300 hover:bg-amber-300 hover:text-black bg-transparent"
+                className="border-2 border-green-300 text-green-300 hover:bg-green-300 hover:text-black bg-transparent w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold"
                 asChild
               >
                 <Link href="/library">Explore Stories</Link>
@@ -157,34 +159,34 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Core Values Section */}
-        <section className="py-20 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800">
-          <div className="container mx-auto px-6">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        {/* Core Values Section - Mobile Responsive */}
+        <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
                 Our Foundation
               </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
                 Built on the pillars of African storytelling tradition and
                 modern digital innovation
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
               {coreValues.map((value, index) => (
                 <Card
                   key={index}
-                  className="p-6 text-center hover:shadow-lg transition-shadow border-l-4 border-l-amber-500"
+                  className="p-4 sm:p-6 text-center hover:shadow-lg transition-shadow border-l-4 border-l-green-500"
                 >
                   <div className="mb-4 flex justify-center">
-                    <div className="p-3 bg-amber-100 dark:bg-amber-900 rounded-full">
-                      <value.icon className="h-8 w-8 text-amber-600 dark:text-amber-400" />
+                    <div className="p-3 bg-green-100 dark:bg-green-900 rounded-full">
+                      <value.icon className="h-6 w-6 sm:h-8 sm:w-8 text-green-600 dark:text-green-400" />
                     </div>
                   </div>
-                  <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
+                  <h3 className="text-lg sm:text-xl font-semibold mb-3 text-gray-900 dark:text-white">
                     {value.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
                     {value.description}
                   </p>
                 </Card>
@@ -193,28 +195,28 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Brand Story Section */}
-        <section className="py-20 bg-white dark:bg-slate-800">
-          <div className="container mx-auto px-6">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        {/* Brand Story Section - Mobile Responsive */}
+        <section className="py-12 sm:py-16 lg:py-20 bg-white dark:bg-slate-800">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
                 The iSabiTV Journey
               </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
                 Every great movement begins with a story. Here's ours.
               </p>
             </div>
 
-            <div className="space-y-20">
+            <div className="space-y-12 sm:space-y-16 lg:space-y-20">
               {brandStory.map((story, index) => (
                 <div key={index} className="overflow-hidden">
                   <div
-                    className={`flex flex-col gap-8 ${
+                    className={`flex flex-col gap-6 sm:gap-8 ${
                       index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
                     }`}
                   >
                     {/* Image Section */}
-                    <div className="relative w-full lg:w-1/2 h-80 lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl">
+                    <div className="relative w-full lg:w-1/2 h-64 sm:h-80 lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl">
                       <Image
                         src={story.image || "/placeholder.svg"}
                         alt={story.title}
@@ -225,21 +227,21 @@ export default function AboutPage() {
                     </div>
 
                     {/* Content Section */}
-                    <div className="flex w-full lg:w-1/2 flex-col justify-center p-8">
-                      <div className="mb-6 flex items-center gap-4">
-                        <div className="p-3 bg-amber-100 dark:bg-amber-900 rounded-full">
-                          <story.icon className="h-8 w-8 text-amber-600 dark:text-amber-400" />
+                    <div className="flex w-full lg:w-1/2 flex-col justify-center p-4 sm:p-6 lg:p-8">
+                      <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+                        <div className="p-2 sm:p-3 bg-green-100 dark:bg-green-900 rounded-full flex-shrink-0">
+                          <story.icon className="h-6 w-6 sm:h-8 sm:w-8 text-green-600 dark:text-green-400" />
                         </div>
                         <div>
-                          <h3 className="text-3xl font-bold text-gray-900 dark:text-white">
+                          <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">
                             {story.title}
                           </h3>
-                          <p className="text-lg text-amber-600 dark:text-amber-400 font-medium">
+                          <p className="text-base sm:text-lg text-green-600 dark:text-green-400 font-medium">
                             {story.subtitle}
                           </p>
                         </div>
                       </div>
-                      <p className="text-lg text-muted-foreground dark:text-gray-300 leading-relaxed">
+                      <p className="text-base sm:text-lg text-muted-foreground dark:text-gray-300 leading-relaxed">
                         {story.description}
                       </p>
                     </div>
@@ -250,32 +252,80 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Impact Statistics */}
-        {/* <section className="py-20 bg-gradient-to-r from-amber-600 via-red-600 to-green-600 text-white">
-          <div className="container mx-auto px-6">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-4">Our Growing Impact</h2>
-              <p className="text-xl opacity-90 max-w-3xl mx-auto">
+        {/* Impact Statistics - Mobile Responsive */}
+        <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 text-white">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
+                Our Growing Impact
+              </h2>
+              <p className="text-lg sm:text-xl opacity-90 max-w-3xl mx-auto px-4">
                 Together, we're building something beautiful and powerful
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
               {impact.map((stat, index) => (
                 <div key={index} className="text-center">
-                  <div className="text-5xl font-bold mb-2 text-amber-200">
+                  <div className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2 text-green-200">
                     {stat.number}
                   </div>
-                  <div className="text-xl font-semibold mb-2">{stat.label}</div>
-                  <div className="text-sm opacity-80">{stat.description}</div>
+                  <div className="text-base sm:text-lg lg:text-xl font-semibold mb-2">
+                    {stat.label}
+                  </div>
+                  <div className="text-xs sm:text-sm opacity-80 px-2">
+                    {stat.description}
+                  </div>
                 </div>
               ))}
             </div>
           </div>
-        </section> */}
+        </section>
 
-        {/* Call to Action */}
-      
+        {/* Call to Action - Mobile Responsive */}
+        <section className="py-12 sm:py-16 lg:py-20 bg-slate-900 text-white">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6">
+                Ready to Add Your Voice to the Chorus?
+              </h2>
+              <p className="text-base sm:text-lg lg:text-xl mb-6 sm:mb-8 opacity-90 leading-relaxed px-4">
+                Whether you're a storyteller, educator, artist, entrepreneur, or
+                simply someone with a story to share - iSabiTV is your platform.
+                Join thousands of creators who are reshaping how Black stories
+                are told and celebrated.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
+                <Button
+                  size="lg"
+                  className="bg-green-600 hover:bg-green-700 text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg w-full sm:w-auto"
+                  asChild
+                >
+                  <Link href="/auth/signup">Start Your Journey</Link>
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-green-300 text-green-300 hover:bg-green-300 hover:text-black px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg bg-transparent w-full sm:w-auto"
+                  asChild
+                >
+                  <Link href="/library">Discover Stories</Link>
+                </Button>
+              </div>
+
+              <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-slate-700">
+                <p className="text-base sm:text-lg font-medium text-green-300 mb-2">
+                  "Sankofa" - Look back to move forward
+                </p>
+                <p className="text-xs sm:text-sm opacity-75 px-4">
+                  We honor our past, celebrate our present, and build our future
+                  - together.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </div>
