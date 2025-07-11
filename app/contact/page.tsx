@@ -1,7 +1,8 @@
 "use client";
 
-import type React from "react";
-import { useState } from "react";
+import React from "react";
+import type { ReactElement } from "react";
+import { useActionState } from "react";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
@@ -25,8 +26,11 @@ import {
   HelpCircle,
   Users,
   Shield,
+  CheckCircle,
+  AlertCircle,
 } from "lucide-react";
 import Image from "next/image";
+import { submitContactForm, type ContactFormResult } from "./action";
 
 const contactInfo = [
   {
@@ -86,57 +90,30 @@ const faqItems = [
   },
 ];
 
-export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-    inquiryType: "general",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+export default function ContactPage(): ReactElement {
+  const [state, formAction, isPending] = useActionState<
+    ContactFormResult | null,
+    FormData
+  >(submitContactForm, null);
   const { toast } = useToast();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
+  // Show toast when form submission completes
+  React.useEffect(() => {
+    if (state?.success) {
       toast({
         title: "Message sent successfully!",
-        description: "We'll get back to you within 24 hours.",
+        description: state.message,
+        duration: 5000,
       });
-
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-        inquiryType: "general",
-      });
-    } catch (error) {
+    } else if (state?.error) {
       toast({
         title: "Error sending message",
-        description: "Please try again or contact us directly.",
+        description: state.error,
         variant: "destructive",
+        duration: 5000,
       });
-    } finally {
-      setIsSubmitting(false);
     }
-  };
-
-  const handleInputChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
+  }, [state, toast]);
 
   return (
     <div className="min-h-screen">
@@ -177,8 +154,8 @@ export default function ContactPage() {
                   className="text-center w-full h-full flex flex-col justify-between rounded-xl transition-all duration-300 hover:shadow-lg"
                 >
                   <CardHeader>
-                    <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[#DBF2D1]">
-                      <info.icon className="h-6 w-6 text-[#4DD90D]" />
+                    <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-green-100">
+                      <info.icon className="h-6 w-6 text-green-600" />
                     </div>
                     <CardTitle className="text-lg">{info.title}</CardTitle>
                     <CardDescription>{info.description}</CardDescription>
@@ -189,7 +166,7 @@ export default function ContactPage() {
                     ) : (
                       <a
                         href={info.action}
-                        className="text-sm font-medium text-[#4DD90D] hover:underline"
+                        className="text-sm font-medium text-green-600 hover:underline"
                       >
                         {info.contact}
                       </a>
@@ -216,7 +193,24 @@ export default function ContactPage() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <form onSubmit={handleSubmit} className="space-y-4">
+                    {/* Success/Error Message Display */}
+                    {state?.success && (
+                      <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center gap-2">
+                        <CheckCircle className="h-5 w-5 text-green-600" />
+                        <p className="text-green-800 text-sm">
+                          {state.message}
+                        </p>
+                      </div>
+                    )}
+
+                    {state?.error && (
+                      <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2">
+                        <AlertCircle className="h-5 w-5 text-red-600" />
+                        <p className="text-red-800 text-sm">{state.error}</p>
+                      </div>
+                    )}
+
+                    <form action={formAction} className="space-y-4">
                       <div className="grid gap-4 sm:grid-cols-2">
                         <div className="space-y-2">
                           <Label htmlFor="name">Name *</Label>
@@ -224,9 +218,8 @@ export default function ContactPage() {
                             id="name"
                             name="name"
                             placeholder="Your full name"
-                            value={formData.name}
-                            onChange={handleInputChange}
                             required
+                            disabled={isPending}
                           />
                         </div>
                         <div className="space-y-2">
@@ -236,9 +229,8 @@ export default function ContactPage() {
                             name="email"
                             type="email"
                             placeholder="your@email.com"
-                            value={formData.email}
-                            onChange={handleInputChange}
                             required
+                            disabled={isPending}
                           />
                         </div>
                       </div>
@@ -248,8 +240,7 @@ export default function ContactPage() {
                         <select
                           id="inquiryType"
                           name="inquiryType"
-                          value={formData.inquiryType}
-                          onChange={handleInputChange}
+                          disabled={isPending}
                           className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                         >
                           <option value="general">General Inquiry</option>
@@ -266,9 +257,8 @@ export default function ContactPage() {
                           id="subject"
                           name="subject"
                           placeholder="Brief description of your inquiry"
-                          value={formData.subject}
-                          onChange={handleInputChange}
                           required
+                          disabled={isPending}
                         />
                       </div>
 
@@ -279,18 +269,24 @@ export default function ContactPage() {
                           name="message"
                           placeholder="Please provide details about your inquiry..."
                           rows={5}
-                          value={formData.message}
-                          onChange={handleInputChange}
                           required
+                          disabled={isPending}
                         />
                       </div>
 
                       <Button
                         type="submit"
-                        className="w-full bg-[#299305] text-white hover:bg-[#207d04]"
-                        disabled={isSubmitting}
+                        className="w-full bg-green-600 text-white hover:bg-green-700"
+                        disabled={isPending}
                       >
-                        {isSubmitting ? "Sending..." : "Send Message"}
+                        {isPending ? (
+                          <>
+                            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                            Sending...
+                          </>
+                        ) : (
+                          "Send Message"
+                        )}
                       </Button>
                     </form>
                   </CardContent>
@@ -313,8 +309,8 @@ export default function ContactPage() {
                     <Card key={index} className="rounded-xl">
                       <CardHeader>
                         <div className="flex items-start space-x-3">
-                          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#DBF2D1]">
-                            <item.icon className="h-4 w-4 text-[#4DD90D]" />
+                          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-green-100">
+                            <item.icon className="h-4 w-4 text-green-600" />
                           </div>
                           <CardTitle className="text-base leading-snug break-words">
                             {item.question}
@@ -341,10 +337,13 @@ export default function ContactPage() {
                     </p>
                     <Button
                       variant="outline"
-                      className="w-full bg-[#299305] text-white hover:bg-[#207d04]"
+                      className="w-full bg-green-600 text-white hover:bg-green-700"
+                      asChild
                     >
-                      <Mail className="mr-2 h-4 w-4" />
-                      Email Support
+                      <a href="mailto:hello@isabitv.com">
+                        <Mail className="mr-2 h-4 w-4" />
+                        Email Support
+                      </a>
                     </Button>
                   </CardContent>
                 </Card>
